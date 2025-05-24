@@ -176,7 +176,7 @@
 /* На <610px — сбросить span, иначе элемент может не отобразиться */
 @media (max-width: 609px) {
   .portfolio-card--video {
-    grid-column: auto !important;
-    grid-row: auto !important;
+    grid-column: auto;
+    grid-row: auto;
   }
 }
