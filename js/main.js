@@ -177,29 +177,45 @@ document.addEventListener("DOMContentLoaded", () => {
     const playVideo = () => {
       wrapper.classList.add("playing");
       playBtn.style.display = "none";
-      video.play();
+      video.setAttribute("controls", true);
+
+      try {
+        const promise = video.play();
+        if (promise !== undefined) {
+          promise.catch((err) => {
+            console.warn("play() failed:", err);
+          });
+        }
+      } catch (err) {
+        console.warn("Play error:", err);
+      }
     };
 
     // Кнопка запуска
     playBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      playVideo();
+      if (video.paused) {
+        playVideo();
+      }
     });
 
-    // Клик по видео — пауза/воспроизведение
+    // Клик по области видео — пауза/воспроизведение
     wrapper.addEventListener("click", () => {
       if (video.paused) {
         playVideo();
       } else {
         video.pause();
+        wrapper.classList.remove("playing");
         playBtn.style.display = "block";
+        video.removeAttribute("controls");
       }
     });
 
-    // Если видео завершилось — вернуть кнопку
+    // Когда видео закончилось
     video.addEventListener("ended", () => {
       wrapper.classList.remove("playing");
       playBtn.style.display = "block";
+      video.removeAttribute("controls");
     });
   });
 });
