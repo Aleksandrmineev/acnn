@@ -1,0 +1,78 @@
+/* ПРЕИМУЩЕСТВА */
+
+.advantages {
+  padding: var(--section-padding) 0;
+  background-color: var(--clr-light-bg);
+}
+
+.advantages__list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(300px, 45vw, 350px), 1fr)
+  );
+  gap: var(--gap);
+  max-width: var(--container-width);
+  padding: 0 var(--container-padding);
+  margin-top: var(--section-padding-mobile);
+}
+
+.advantage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--clr-white);
+  color: var(--clr-text);
+  padding: var(--section-padding-mobile);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-lg);
+  text-align: center;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.advantage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.advantage:hover::before {
+  opacity: 1;
+}
+
+.advantage--experience::before {
+  background-image: url("../img/advantages/advantage1.webp");
+}
+
+.advantage--integrated::before {
+  background-image: url("../img/advantages/advantage2.webp");
+}
+
+.advantage--license::before {
+  background-image: url("../img/advantages/advantage3.webp");
+}
+
+.advantage--clients::before {
+  background-image: url("../img/advantages/advantage4.webp");
+}
+
+.advantage--guarantee::before {
+  background-image: url("../img/advantages/advantage5.webp");
+}
+
+.advantage--team::before {
+  background-image: url("../img/advantages/advantage6.webp");
+}
+
+.advantage__icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--gap);
+}

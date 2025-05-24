@@ -1,0 +1,137 @@
+.hero {
+  position: relative;
+  background: url("../img/content/hero-bg.jpg") top/cover no-repeat;
+  background-size: 100% auto;
+  color: var(--clr-white);
+  padding: clamp(80px, 10vw, 160px) 0;
+  text-align: center;
+  animation: heroFly 30s ease-in-out infinite alternate;
+  background-size: 100%;
+  transition: background-position 0.1s ease;
+}
+
+@keyframes heroFly {
+  0% {
+    background-position: 50% 50%;
+    background-size: 130%;
+  }
+  100% {
+    background-position: 50% 40%;
+    background-size: 150%;
+  }
+}
+
+.hero__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero__title {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  line-height: var(--line-height-xxl);
+  text-transform: var(--font-uppercase);
+  margin-bottom: 1rem;
+  color: var(--clr-white);
+}
+
+.hero__subtitle {
+  font-size: var(--font-size-subtitle);
+  font-weight: 400;
+  line-height: var(--line-height-base);
+  margin-bottom: 2rem;
+  color: var(--clr-white);
+}
+
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 3rem;
+}
+
+.hero__stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.hero__stat {
+  border: 2px solid var(--btn-color);
+  box-shadow: 0 6px 16px rgba(0, 91, 255, 0.3);
+  padding: var(--btn-padding);
+  border: 2px solid;
+  border-radius: var(--btn-radius);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero__stat-number {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 700;
+  color: var(--clr-white);
+}
+
+.hero__stat-label {
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  color: var(--clr-white);
+  margin-top: 4px;
+}
+
+/* ДЛЯ ФОНОВОЙ АНИМАЦИИ */
+
+@media (max-width: 1000px) {
+  @keyframes heroFly {
+    0% {
+      background-position: 50% 50%;
+      background-size: 200%;
+    }
+    100% {
+      background-position: 50% 40%;
+      background-size: 250%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  @keyframes heroFly {
+    0% {
+      background-position: 50% 50%;
+      background-size: 300%;
+    }
+    100% {
+      background-position: 50% 40%;
+      background-size: 350%;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  @keyframes heroFly {
+    0% {
+      background-position: 50% 50%;
+      background-size: 350%;
+    }
+    100% {
+      background-position: 50% 40%;
+      background-size: 400%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  @keyframes heroFly {
+    0% {
+      background-position: 50% 50%;
+      background-size: 500%;
+    }
+    100% {
+      background-position: 50% 40%;
+      background-size: 550%;
+    }
+  }
+}

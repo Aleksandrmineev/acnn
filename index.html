@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SiteDescription" />
+    <title>acnn</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Header -->
+      <header class="header">
+        <div class="container header__inner">
+          <div class="header__logo">
+            <img src="img/icon/cropped-logo.png" alt="АС Монтаж" />
+          </div>
+          <nav class="nav-desktop">
+            <a href="#home">Главная</a>
+            <a href="#services">Услуги</a>
+            <a href="#portfolio">Портфолио</a>
+            <a href="#contacts">Контакты</a>
+            <a href="#contacts" class="header__city">Нижний Новгород</a>
+          </nav>
+          <div class="header__contacts">
+            <a href="tel:+78312288022" class="header__phone adaptive-only"
+              >+7 (831) 228-80-22</a
+            >
+            <a
+              href="tg://resolve?domain=ac_nn"
+              class="header__icon"
+              aria-label="Telegram"
+            >
+              <img src="img/icon/tg.svg" alt="Telegram" />
+            </a>
+            <a
+              href="whatsapp://send?phone=+79534157494"
+              class="header__icon"
+              aria-label="WhatsApp"
+            >
+              <img src="img/icon/wa.svg" alt="WhatsApp" />
+            </a>
+            <button class="burger" aria-label="Открыть меню">
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+            </button>
+          </div>
+        </div>
+        <nav class="mobile-menu">
+          <ul>
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Первый экран -->
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero__inner">
+            <h1 class="hero__title">Комплексная безопасность вашего бизнеса</h1>
+            <p class="hero__subtitle">
+              10+ лет проектирования, монтажа и обслуживания систем
+              пожаротушения, охраны и видеонаблюдения
+            </p>
+            <div class="hero__buttons">
+              <a href="#services" class="btn btn--primary">Наши услуги</a>
+              <a href="#contacts" class="btn btn--secondary">Заказать звонок</a>
+            </div>
+          </div>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <div class="hero__stat-number">10+</div>
+              <div class="hero__stat-label">лет опыта</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-number">500+</div>
+              <div class="hero__stat-label">объектов под охраной</div>
+            </div>
+            <div class="hero__stat">
+              <div class="hero__stat-number">24/7</div>
+              <div class="hero__stat-label">поддержка</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Преимущества -->
+      <section class="advantages" id="advantages">
+        <div class="container">
+          <h2 class="section-title">Почему выбирают нас</h2>
+          <div class="advantages__list">
+            <div class="advantage advantage--experience">
+              <img
+                src="img/icon/experience.svg"
+                alt=""
+                class="advantage__icon"
+              />
+              <p>10+ лет на рынке</p>
+            </div>
+            <div class="advantage advantage--integrated">
+              <img
+                src="img/icon/integrated.svg"
+                alt=""
+                class="advantage__icon"
+              />
+              <p>Комплексный подход: проектирование, монтаж, обслуживание</p>
+            </div>
+            <div class="advantage advantage--license">
+              <img src="img/icon/license.svg" alt="" class="advantage__icon" />
+              <p>Лицензии МЧС, СРО, Росгвардия</p>
+            </div>
+            <div class="advantage advantage--clients">
+              <img src="img/icon/clients.svg" alt="" class="advantage__icon" />
+              <p>Объекты: Кремль, Центробанк, Лукойл, ЖК, школы</p>
+            </div>
+            <div class="advantage advantage--guarantee">
+              <img
+                src="img/icon/guarantee.svg"
+                alt=""
+                class="advantage__icon"
+              />
+              <p>Гарантии и прозрачные условия</p>
+            </div>
+            <div class="advantage advantage--team">
+              <img src="img/icon/team.svg" alt="" class="advantage__icon" />
+              <p>Команда инженеров с опытом от 5 лет</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Услуги -->
+      <section class="services" id="services">
+        <div class="container">
+          <h2 class="section-title">Наши услуги</h2>
+          <div class="services__grid">
+            <div class="service-card" data-service="fire">
+              <div class="service-card__image fire-alarm">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Пожарная сигнализация</h3>
+                  <p class="service-card__subtitle">
+                    Раннее обнаружение и безопасность
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="security">
+              <div class="service-card__image security-alarm">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Охранная сигнализация</h3>
+                  <p class="service-card__subtitle">Контроль и защита 24/7</p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="video">
+              <div class="service-card__image video-surveillance">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Система видеонаблюдения</h3>
+                  <p class="service-card__subtitle">Онлайн-контроль объекта</p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="access">
+              <div class="service-card__image access-control">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Контроль доступа</h3>
+                  <p class="service-card__subtitle">
+                    Проверенные входы и допуск
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Модальное окно -->
+      <div class="modal" id="serviceModal">
+        <div class="modal__content">
+          <button class="modal__close" aria-label="Закрыть">×</button>
+          <div class="modal__text" id="modalText">
+            Здесь будет подробное описание
+          </div>
+        </div>
+      </div>
+
+      <!-- Сопутствующие решения -->
+      <section class="services" id="solutions">
+        <div class="container">
+          <h2 class="section-title">Сопутствующие решения</h2>
+          <div class="services__grid">
+            <div class="service-card" data-service="alarm">
+              <div class="service-card__image fire-notification">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">
+                    Система оповещения о пожаре
+                  </h3>
+                  <p class="service-card__subtitle">
+                    Звуковое и световое оповещение при ЧС
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="smoke">
+              <div class="service-card__image smoke-removal">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Система дымоудаления</h3>
+                  <p class="service-card__subtitle">
+                    Удаление продуктов горения
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="extinguish">
+              <div class="service-card__image fire-extinguishing">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Система пожаротушения</h3>
+                  <p class="service-card__subtitle">
+                    Автоматическое тушение (газ, вода, пена)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Документация и сопровождение -->
+      <section class="services" id="docs">
+        <div class="container">
+          <h2 class="section-title">Документация и сопровождение</h2>
+          <div class="services__grid">
+            <div class="service-card" data-service="audit">
+              <div class="service-card__image fire-audit">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Пожарный аудит</h3>
+                  <p class="service-card__subtitle">
+                    Проверка на соответствие нормам
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="evacuation">
+              <div class="service-card__image evacuation-plan">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">План эвакуации</h3>
+                  <p class="service-card__subtitle">
+                    Разработка и печать схем эвакуации
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="service-card" data-service="fireproofing">
+              <div class="service-card__image fire-protection">
+                <div class="service-card__overlay">
+                  <h3 class="service-card__title">Огнезащита конструкций</h3>
+                  <p class="service-card__subtitle">
+                    Нанесение огнезащитных составов
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Портфолио -->
+      <section class="portfolio" id="portfolio">
+        <div class="container">
+          <h2 class="section-title">Наши проекты</h2>
+          <p class="portfolio__desc">
+            Реализованные объекты — от проектирования до сдачи под ключ. Вот
+            часть из них:
+          </p>
+
+          <div class="portfolio__grid">
+            <!-- Карточка проекта 1 Аптека Юбилейная-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="
+                  background-image: url('img/portfolio/cover-yubileynaya.webp');
+                "
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Аптека на Юбилейной</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Карточка проекта 2 Школы Лысково-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="background-image: url('img/portfolio/cover-shkola.webp')"
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Школа Лысково</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Карточка проекта 3 Центробанк Покровская-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="
+                  background-image: url('img/portfolio/cover-centrobank.webp');
+                "
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Центробанк Покровская</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Карточка проекта 4 Нижегородский Фуникулер-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="
+                  background-image: url('img/portfolio/cover-funikuler.webp');
+                "
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Нижегородский Фуникулер</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="portfolio-card portfolio-card--video">
+                <div class="video-wrapper" data-video>
+                  <video
+                    class="portfolio__video"
+                    preload="metadata"
+                    poster="/video/preview.png"
+                  >
+                    <source src="video/portfolio.mp4" type="video/mp4" />
+                    Ваш браузер не поддерживает видео.
+                  </video>
+                  <button class="video-play" aria-label="Play video"></button>
+                </div>
+              </div>
+              
+
+            <!-- Карточка проекта 5 Правительство Нижегородской области-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="
+                  background-image: url('img/portfolio/cover-pravitelstvo.webp');
+                "
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">
+                    Правительство Нижегородской области
+                  </h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Карточка проекта 6 Арсенал-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="
+                  background-image: url('img/portfolio/cover-arsenal.webp');
+                "
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Арсенал</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Карточка проекта 7 Лукойл-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="background-image: url('img/portfolio/cover-lukoil.webp')"
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Лукойл</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Карточка проекта 8 Салют-->
+            <div class="portfolio-card">
+              <div
+                class="portfolio-card__image"
+                style="background-image: url('img/portfolio/cover-salyut.webp')"
+              >
+                <div class="portfolio-card__overlay">
+                  <h3 class="portfolio-card__title">Кафе Салют</h3>
+                  <p class="portfolio-card__meta">
+                    Категория: Промышленность · Тип: Монтаж
+                  </p>
+                  <button class="btn btn--secondary portfolio-card__btn">
+                    Подробнее
+                  </button>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <div class="portfolio__more">
+          <a href="/portfolio" class="btn btn--primary"
+            >Смотреть все объекты</a
+          >
+        </div>
+      </section>
+
+      <!-- О компании -->
+      <section class="about" id="about">
+        <div class="container">
+          <h2 class="section-title">О компании</h2>
+          <p class="about__text">
+            АС Монтаж — команда инженеров и проектировщиков с опытом более 10
+            лет. Мы работаем по всей Нижегородской области, внедряя современные
+            системы безопасности на объектах любого масштаба. Мы выполняем
+            работы под ключ и берём на себя все согласования с МЧС и другими
+            органами.
+          </p>
+        </div>
+      </section>
+
+      <!-- Контакты -->
+      <section class="contacts" id="contacts">
+        <div class="container">
+          <h2 class="section-title">Контакты</h2>
+          <div class="contacts__info">
+            <p><strong>Телефон:</strong> +7 (831) XXX-XX-XX</p>
+            <p><strong>Email:</strong> info@acnn.ru</p>
+            <p><strong>Адрес:</strong> г. Нижний Новгород, ул. Примерная, 1</p>
+          </div>
+          <form class="contacts__form">
+            <input type="text" name="name" placeholder="Ваше имя" />
+            <input type="tel" name="phone" placeholder="Телефон" />
+            <textarea name="message" placeholder="Комментарий"></textarea>
+            <button type="submit" class="btn btn--primary">
+              Оставить заявку
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <button class="to-top" aria-label="Наверх">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

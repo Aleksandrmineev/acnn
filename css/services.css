@@ -1,0 +1,165 @@
+/* Сетка */
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(300px, 45vw, 680px), 1fr)
+  );
+  gap: var(--gap);
+  max-width: var(--container-width);
+  padding: 0 var(--container-padding);
+  margin-top: var(--section-padding-mobile);
+}
+
+/* Карточка */
+.service-card {
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: scale(1.02);
+}
+
+/* Обёртка с фоном */
+.service-card__image {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  border-radius: var(--radius);
+}
+
+/* Градиент + текст */
+.service-card__overlay {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
+  color: var(--clr-white);
+  transition: background 0.3s ease;
+  border-radius: var(--radius);
+}
+
+.service-card:hover .service-card__overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+}
+
+.service-card__title {
+  font-size: var(--font-size-card-title);
+  font-weight: 600;
+  line-height: var(--line-height-base);
+  margin-bottom: 0.3rem;
+  color: var(--clr-white);
+  text-shadow: var(--shadow-card-text);
+}
+
+.service-card__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--clr-white);
+  opacity: 0.85;
+  line-height: var(--line-height-base);
+}
+
+/* Фоны услуг */
+.fire-alarm {
+  background-image: url("../img/services/fire-alarm.webp");
+}
+.security-alarm {
+  background-image: url("../img/services/security-alarm.webp");
+}
+.video-surveillance {
+  background-image: url("../img/services/video-surveillance.webp");
+}
+.access-control {
+  background-image: url("../img/services/access-control.webp");
+}
+
+/* Модалка */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  padding: var(--section-padding-mobile);
+}
+
+.modal__content {
+  background: var(--clr-white);
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  border-radius: var(--radius);
+  position: relative;
+  color: var(--clr-text);
+  font-size: var(--font-size-base);
+  box-shadow: var(--shadow-card);
+}
+
+.modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--clr-text);
+  cursor: pointer;
+}
+/* ========================== */
+/*    Пункт 2: Сопутствующие решения */
+/* ========================== */
+
+/* Сетка только для этой секции */
+#solutions .services__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(300px, 30vw, 440px), 1fr)
+  );
+  gap: var(--gap);
+}
+
+/* Фоновые изображения */
+.fire-notification {
+  background-image: url("../img/services/fire-notification.webp");
+}
+
+.smoke-removal {
+  background-image: url("../img/services/smoke-removal.webp");
+}
+
+.fire-extinguishing {
+  background-image: url("../img/services/fire-extinguishing.webp");
+}
+
+/* ========================== */
+/*    Пункт 3: Документация и сопровождение */
+/* ========================== */
+
+#docs .services__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(clamp(300px, 30vw, 440px), 1fr)
+  );
+  gap: var(--gap);
+}
+
+.fire-audit {
+  background-image: url("../img/services/fire-audit.webp");
+}
+
+.evacuation-plan {
+  background-image: url("../img/services/evacuation-plan.webp");
+}
+
+.fire-protection {
+  background-image: url("../img/services/fire-protection.webp");
+}
