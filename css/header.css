@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .header__logo {
@@ -118,6 +118,10 @@
 /* ========================== */
 
 .mobile-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   opacity: 0;
   background-color: rgba(0, 0, 0, 0.9);
   width: 100%;
@@ -141,7 +145,7 @@
 }
 
 .mobile-menu li {
-  margin: 15px 0;
+  margin: clamp(30px, 5vh, 50px) 0;
 }
 
 .mobile-menu a {

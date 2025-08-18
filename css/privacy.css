@@ -1,0 +1,120 @@
+.header__privacy {
+  position: relative;
+  width: 100%;
+  height: 10vh;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  background-color: rgba(20, 20, 20);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.page {
+  padding: 100px 20px;
+  margin-top: 0;
+  line-height: 178%;
+}
+
+.page * {
+  line-height: 178%;
+}
+
+.privacy,
+.terms {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: var(--section-padding-mobile) 0;
+  max-width: var(--container-width);
+}
+
+.vacancies h1,
+.privacy h1,
+.terms h1 {
+  font-size: var(--font-size-xxl);
+  line-height: var(--line-height-xxl);
+  color: var(--clr-text);
+  margin-bottom: 8px;
+}
+
+.vacancies h2,
+.privacy h2,
+.terms h2 {
+  font-size: var(--font-size-card-title);
+  line-height: var(--line-height-100);
+  color: var(--clr-card-title);
+  margin-bottom: 12px;
+}
+
+.vacancies p,
+.vacancies li,
+.privacy p,
+.privacy li,
+.terms p,
+.terms li {
+  font-size: var(--font-size-base);
+  color: var(--clr-text);
+  line-height: var(--line-height-base);
+}
+
+.vacancies ul,
+.privacy ul,
+.terms ul {
+  padding-left: 20px;
+  list-style: disc;
+  margin: 0;
+}
+
+.vacancies a,
+.privacy a,
+.terms a {
+  color: var(--clr-accent, #b93a1c);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.vacancies a:hover,
+.privacy a:hover,
+.terms a:hover {
+  color: var(--clr-text);
+  text-decoration: none;
+}
+
+.requisites__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  min-height: 60vh;
+}
+
+.requisites__item {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  font-size: var(--font-size-base);
+  color: var(--clr-text);
+  line-height: var(--line-height-base);
+}
+
+.requisites__item dt {
+  font-weight: var(--fw-bold);
+  min-width: 220px;
+  color: var(--clr-card-title);
+}
+
+.requisites__item dd {
+  margin: 0;
+}
+
+/* 🔽 Адаптив под мобильные */
+@media (max-width: 768px) {
+  .requisites__item {
+    flex-direction: column; /* складываем в колонку */
+    gap: 4px;
+  }
+
+  .requisites__item dt {
+    min-width: auto; /* убираем фикс */
+  }
+}

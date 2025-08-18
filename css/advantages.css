@@ -9,18 +9,17 @@
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(clamp(300px, 45vw, 350px), 1fr)
+    minmax(clamp(200px, 30vw, 350px), 1fr)
   );
   gap: var(--gap);
   max-width: var(--container-width);
-  padding: 0 var(--container-padding);
   margin-top: var(--section-padding-mobile);
 }
 
 .advantage {
   position: relative;
   aspect-ratio: 16 / 9;
-  background: var(--clr-white);
+  background: rgba(0, 0, 0, 0.45);
   color: var(--clr-text);
   padding: var(--section-padding-mobile);
   border-radius: var(--radius);
@@ -30,6 +29,10 @@
   text-align: center;
   overflow: hidden;
   transition: color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .advantage::before {
@@ -72,7 +75,7 @@
 }
 
 .advantage__icon {
-  width: 48px;
-  height: 48px;
+  width: clamp(28px, 4vw, 48px);
+  height: clamp(28px, 4vw, 48px);
   margin-bottom: var(--gap);
 }

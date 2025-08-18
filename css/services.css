@@ -3,65 +3,12 @@
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(clamp(300px, 45vw, 680px), 1fr)
+    minmax(clamp(300px, 40vw, 500px), 1fr)
   );
   gap: var(--gap);
   max-width: var(--container-width);
   padding: 0 var(--container-padding);
   margin-top: var(--section-padding-mobile);
-}
-
-/* Карточка */
-.service-card {
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: var(--radius);
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: scale(1.02);
-}
-
-/* Обёртка с фоном */
-.service-card__image {
-  aspect-ratio: 16 / 9;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-  border-radius: var(--radius);
-}
-
-/* Градиент + текст */
-.service-card__overlay {
-  width: 100%;
-  padding: 1rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent 60%);
-  color: var(--clr-white);
-  transition: background 0.3s ease;
-  border-radius: var(--radius);
-}
-
-.service-card:hover .service-card__overlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
-}
-
-.service-card__title {
-  font-size: var(--font-size-card-title);
-  font-weight: 600;
-  line-height: var(--line-height-base);
-  margin-bottom: 0.3rem;
-  color: var(--clr-white);
-  text-shadow: var(--shadow-card-text);
-}
-
-.service-card__subtitle {
-  font-size: var(--font-size-base);
-  color: var(--clr-white);
-  opacity: 0.85;
-  line-height: var(--line-height-base);
 }
 
 /* Фоны услуг */
@@ -162,4 +109,63 @@
 
 .fire-protection {
   background-image: url("../img/services/fire-protection.webp");
+}
+
+/* Стили для слайдера доп услуг */
+
+.services__slider {
+  position: relative;
+  width: 100%;
+}
+.services .swiper-wrapper {
+  align-items: stretch;
+}
+.services .swiper-slide {
+  height: auto;
+}
+.services .swiper-slide > .card {
+  height: 100%;
+}
+
+.services__nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.services__pagination .swiper-pagination-bullet {
+  opacity: 0.5;
+}
+.services__pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+.services__prev,
+.services__next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--card-brd, #333);
+  background: transparent;
+  cursor: pointer;
+}
+.services__prev::before,
+.services__next::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 0 auto;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(225deg);
+}
+.services__next::before {
+  transform: rotate(45deg);
+}
+
+@media (max-width: 640px) {
+  .services .swiper-slide {
+    padding: 0 4px;
+  }
 }

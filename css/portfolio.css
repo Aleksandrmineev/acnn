@@ -5,9 +5,6 @@
 
 .portfolio__desc {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 2rem;
-  font-size: var(--font-size-base);
   color: var(--clr-text-light);
   line-height: var(--line-height-lg);
 }
@@ -15,59 +12,10 @@
 /* Сетка карточек */
 .portfolio__grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(clamp(280px, 30vw, 420px), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--gap);
   align-items: stretch;
-  grid-auto-flow: dense; /* важно для уплотнения сетки */
-}
-
-/* Карточка */
-.portfolio-card {
-  overflow: hidden;
-  border-radius: var(--radius);
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.portfolio-card:hover {
-  transform: scale(1.02);
-}
-
-.portfolio-card__image {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--radius);
-  display: flex;
-  align-items: flex-end;
-}
-
-.portfolio-card__overlay {
-  width: 100%;
-  padding: clamp(1rem, 3vw, 1.5rem);
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 60%);
-  color: var(--clr-white);
-  border-radius: var(--radius);
-  transition: background 0.3s ease;
-}
-
-.portfolio-card__title {
-  font-size: clamp(18px, 2.5vw, 26px);
-  font-weight: 600;
-  line-height: var(--line-height-base);
-  margin-bottom: 0.3rem;
-  text-shadow: var(--shadow-card-text);
-}
-
-.portfolio-card__meta {
-  font-size: clamp(14px, 2vw, 18px);
-  opacity: 0.9;
-  color: var(--clr-white);
+  grid-auto-flow: dense;
 }
 
 .portfolio-card__btn {
@@ -110,6 +58,7 @@
 .portfolio__more {
   margin-top: 3rem;
   text-align: center;
+  display: none;
 }
 
 /* Видео как карточка в сетке */
@@ -119,6 +68,7 @@
   position: relative;
   box-shadow: var(--shadow-card);
   aspect-ratio: 16 / 9;
+  padding-right: 15px;
 }
 
 /* Видео внутри карточки */
@@ -170,6 +120,12 @@
   .portfolio-card--video {
     grid-column: span 2;
     grid-row: span 2;
+  }
+}
+
+@media (max-width: 940px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
   }
 }
 

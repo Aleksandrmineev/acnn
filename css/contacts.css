@@ -1,0 +1,149 @@
+.contacts__container {
+  margin: clamp(20px, 5vh, 40px) auto;
+}
+
+.contacts__team {
+  max-width: 100%;
+}
+
+.contacts__team-title,
+.contacts__team-sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 20px;
+  line-height: 178%;
+  color: var(--clr-card-title);
+  flex-wrap: wrap;
+}
+
+/* Сетка контактов: 2 колонки на десктопе */
+.contacts__inner {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--gap);
+  align-items: center;
+}
+
+/* Мобайл/планшет — в колонку */
+@media (max-width: 940px) {
+  .contacts__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* Заголовок и подзаголовок блока людей */
+.contacts__team-sub {
+  color: var(--clr-text);
+  opacity: 0.9;
+  margin-bottom: 16px;
+}
+
+/* Список людей */
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--clr-light-bg);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 12px rgba(0, 91, 255, 0.2);
+  border-radius: var(--btn-radius);
+  padding: var(--btn-padding-block) var(--btn-padding-inline);
+}
+
+.person {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  min-width: 0;
+}
+
+.person > * {
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.person:first-child {
+  border-top: none;
+}
+
+.person__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.person__body {
+  max-width: 100%;
+}
+
+.person__name {
+  font-weight: var(--fw-bold, 600);
+  color: var(--clr-card-title);
+}
+.person__role {
+  font-size: 13px;
+  opacity: 0.75;
+  margin: 2px 0 8px;
+}
+
+.person__name,
+.person__role {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+/* Ссылки (почта/телефон) с иконками */
+.person__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-text);
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 16px;
+}
+.person__link:hover {
+  color: var(--clr-accent, #b93a1c);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+
+@media (max-width: 420px) {
+  .team-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: start;
+    gap: 18px;
+    list-style: none;
+  }
+
+  .person * {
+    grid-template-columns: 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.contacts__form {
+  margin: 0 auto; /* форма сама станет по центру */
+  max-width: 400px; /* ограничиваем ширину, чтобы не растягивалась */
+}

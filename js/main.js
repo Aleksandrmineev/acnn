@@ -203,3 +203,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Слайдер доп услуги на главной странице
+document.addEventListener("DOMContentLoaded", () => {
+  new Swiper(".js-services-slider", {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    loop: true,
+    pagination: { el: ".services__pagination", clickable: true },
+    navigation: { nextEl: ".services__next", prevEl: ".services__prev" },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 16 },
+      940: { slidesPerView: 3, spaceBetween: 20 },
+      1200: { slidesPerView: 3, spaceBetween: 24 },
+    },
+  });
+});
