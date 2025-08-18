@@ -6,7 +6,11 @@
 @import "about.css";
 @import "contacts.css";
 
+
+@import "privacy.css";
+@import "projects.css";
+
 @import "main.css";
 @import "footer.css";
 @import "media.css";
-@import "privacy.css";
+

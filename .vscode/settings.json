@@ -7,6 +7,6 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "[css]": {
-    "editor.defaultFormatter": null
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   }
 }

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SiteDescription" />
+    <title>АС Монтаж - Проекты</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon/site.webmanifest">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header header__privacy">
+            <div class="container header__inner">
+                <div class="header__logo">
+                    <a href="./" aria-label="На главную">
+                        <img src="img/icon/cropped-logo.png" alt="АС Монтаж" />
+                    </a>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="./" aria-label="На главную">Главная</a>
+                    <a href="index.html#services">Услуги</a>
+                    <a href="index.html#portfolio">Портфолио</a>
+                    <a href="index.html#contacts">Контакты</a>
+                    <a href="index.html#contacts" class="header__city">Нижний Новгород</a>
+                </nav>
+                <div class="header__contacts">
+                    <a href="tel:+78312288022" class="header__phone adaptive-only">+7 (831) 228-80-22</a>
+                    <a href="tg://resolve?domain=ac_nn" class="header__icon" aria-label="Telegram">
+                        <img src="img/icon/tg.svg" alt="Telegram" />
+                    </a>
+                    <a href="whatsapp://send?phone=+79534157494" class="header__icon" aria-label="WhatsApp">
+                        <img src="img/icon/wa.svg" alt="WhatsApp" />
+                    </a>
+                    <button class="burger" aria-label="Открыть меню">
+                        <span class="burger__line"></span>
+                        <span class="burger__line"></span>
+                        <span class="burger__line"></span>
+                    </button>
+                </div>
+            </div>
+            <nav class="mobile-menu">
+                <ul>
+                    <li><a href="./">Главная</a></li>
+                    <li><a href="index.html#services">Услуги</a></li>
+                    <li><a href="index.html#portfolio">Портфолио</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="projects" id="main" tabindex="-1">
+            <!-- Page Title / Intro -->
+            <div class="projects__header container">
+                <h1 class="projects__title section-title">Наши проекты</h1>
+                <p class="projects__lead">Реализованные объекты по системам безопасности: пожарная сигнализация,
+                    охранная сигнализация, видеонаблюдение и контроль доступа.</p>
+            </div>
+
+            <!-- Layout: content + aside (filters) -->
+            <section class="projects__layout container" aria-label="Список проектов и фильтры">
+                <!-- Content column -->
+                <div class="projects__content" aria-live="polite">
+
+
+                    <!-- Projects Grid -->
+                    <section class="projects__grid" aria-label="Список проектов">
+                        <!-- Card -->
+                        <article class="project-card" data-category="fire" data-city="Нижний Новгород" data-size="420"
+                            data-date="2022-06-10">
+                            <a class="project-card__media" href="apteka.html"
+                                aria-label="Подробнее: Аптека на ул.Юбилейная">
+                                <figure>
+                                    <img src="img/projects/01.webp" width="640" height="420"
+                                        alt="Бизнес-центр Alfa — общий вид объекта" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="project-alfa.html">Аптека</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Пожарная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 50 м²</li>
+                                    <li>Июнь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Монтаж адресно-аналоговой системы с автоматическим
+                                    оповещением и интеграцией с диспетчеризацией здания.</p>
+                                <a class="btn btn--primary project-card__cta" href="project-alfa.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="1100" data-date="2021-04-28">
+                            <a class="project-card__media" href="lukoil.html"
+                                aria-label="Подробнее: Администрация Лукойл Площадь Свободы">
+                                <figure>
+                                    <img src="img/projects/02.webp" width="640" height="420"
+                                        alt="Администрация Лукойл Площадь Свободы" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="lukoil.html">Администрация Лукойл</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 1 100 м²</li>
+                                    <li>Апрель 2021</li>
+                                </ul>
+                                <p class="project-card__excerpt">Периметральная охрана, магнитоконтакты ворот, датчики
+                                    разбития стекла, тревожные кнопки.</p>
+                                <a class="btn btn--primary project-card__cta" href="lukoil.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="780"
+                            data-date="2024-03-12">
+                            <a class="project-card__media" href="farmacia.html"
+                                aria-label="Подробнее: Нижегородская областная фармация">
+                                <figure>
+                                    <img src="img/projects/03.webp" width="640" height="420"
+                                        alt="Нижегородская областная фармация — серверная и камеры видеонаблюдения"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="farmacia.html">Нижегородская областная
+                                        фармация</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 2780 м²</li>
+                                    <li>Март 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">IP‑камеры 4K, видеостена на ресепшене, аналитика
+                                    движения и распознавание зон доступа.</p>
+                                <a class="btn btn--primary project-card__cta" href="farmacia.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="access" data-city="Нижний Новгород" data-size="350"
+                            data-date="2023-02-02">
+                            <a class="project-card__media" href="dom.html"
+                                aria-label="Подробнее: Жилой дом. ул. Юбилейная 34">
+                                <figure>
+                                    <img src="img/projects/04.webp" width="640" height="420"
+                                        alt="Жилой дом. ул. Юбилейная 34" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="dom.html">Жилой дом</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Контроль доступа</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 1350 м²</li>
+                                    <li>Февраль 2023</li>
+                                </ul>
+                                <p class="project-card__excerpt">Домофоны, видеодомофоны, контроль доступа по коду,
+                                    бесключевой доступ.</p>
+                                <a class="btn btn--primary project-card__cta" href="dom.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="520" data-date="2022-11-20">
+                            <a class="project-card__media" href="salut.html"
+                                aria-label="Подробнее: Кафе салют — Охранная сигнализация">
+                                <figure>
+                                    <img src="img/projects/05.webp" width="640" height="420"
+                                        alt="Кафе салют — Охранная сигнализация" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="salut.html"> Кафе Салют</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 220 м²</li>
+                                    <li>Ноябрь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Зонирование помещений, круглосуточный мониторинг,
+                                    интеграция с ПЦН.</p>
+                                <a class="btn btn--primary project-card__cta" href="salut.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="900"
+                            data-date="2024-09-08">
+                            <a class="project-card__media" href="sovok.html"
+                                aria-label="Подробнее: Кафе Совок — Видеонаблюдение">
+                                <figure>
+                                    <img src="img/projects/06.webp" width="640" height="420"
+                                        alt="Кафе Совок — Видеонаблюдение" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="sovok.html">Кафе Совок</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 80 м²</li>
+                                    <li>Сентябрь 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">Камеры, удаленный
+                                    доступ.</p>
+                                <a class="btn btn--primary project-card__cta" href="sovok.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Вторая шестерка -->
+                        <!-- Card -->
+                        <article class="project-card" data-category="fire" data-city="Нижний Новгород" data-size="420"
+                            data-date="2022-06-10">
+                            <a class="project-card__media" href="ceilon.html" aria-label="Подробнее: кафе Цейлон">
+                                <figure>
+                                    <img src="img/projects/07.webp" width="640" height="420" alt="кафе Цейлон"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="ceilon.html">Кафе Цейлон</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Пожарная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 50 м²</li>
+                                    <li>Июнь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Монтаж адресно-аналоговой системы с автоматическим
+                                    оповещением и интеграцией с диспетчеризацией здания.</p>
+                                <a class="btn btn--primary project-card__cta" href="ceilon.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="1100" data-date="2021-04-28">
+                            <a class="project-card__media" href="ula.html" aria-label="Подробнее: Кафе Юла">
+                                <figure>
+                                    <img src="img/projects/08.webp" width="640" height="420" alt="Кафе Юла"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="ula.html">Кафе Юла</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 50 м²</li>
+                                    <li>Апрель 2021</li>
+                                </ul>
+                                <p class="project-card__excerpt">Периметральная охрана, магнитоконтакты ворот, датчики
+                                    разбития стекла, тревожные кнопки.</p>
+                                <a class="btn btn--primary project-card__cta" href="ula.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="780"
+                            data-date="2024-03-12">
+                            <a class="project-card__media" href="stena.html"
+                                aria-label="Подробнее: Стена нижегородского кремля">
+                                <figure>
+                                    <img src="img/projects/09.webp" width="640" height="420"
+                                        alt="Стена нижегородского кремля" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="stena.html">Стена нижегородского кремля</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 2780 м²</li>
+                                    <li>Март 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">IP‑камеры 4K, видеостена на ресепшене, аналитика
+                                    движения и распознавание зон доступа.</p>
+                                <a class="btn btn--primary project-card__cta" href="stena.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="access" data-city="Нижний Новгород" data-size="350"
+                            data-date="2023-02-02">
+                            <a class="project-card__media" href="funikuler.html"
+                                aria-label="Подробнее: Кремлевский фуникулер">
+                                <figure>
+                                    <img src="img/projects/10.webp" width="640" height="420" alt="Кремлевский фуникулер"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="funikuler.html">Кремлевский фуникулер</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Контроль доступа</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 1350 м²</li>
+                                    <li>Февраль 2023</li>
+                                </ul>
+                                <p class="project-card__excerpt">Домофоны, видеодомофоны, контроль доступа по коду,
+                                    бесключевой доступ.</p>
+                                <a class="btn btn--primary project-card__cta" href="funikuler.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="520" data-date="2022-11-20">
+                            <a class="project-card__media" href="arsenal.html"
+                                aria-label="Подробнее: Кремль, министерство искусства Арсенал">
+                                <figure>
+                                    <img src="img/projects/11.webp" width="640" height="420"
+                                        alt="Кремль, министерство искусства Арсенал" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="arsenal.html"> Кремль, министерство искусства
+                                        Арсенал</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 220 м²</li>
+                                    <li>Ноябрь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Зонирование помещений, круглосуточный мониторинг,
+                                    интеграция с ПЦН.</p>
+                                <a class="btn btn--primary project-card__cta" href="arsenal.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="900"
+                            data-date="2024-09-08">
+                            <a class="project-card__media" href="dom2.html"
+                                aria-label="Подробнее: многоквартирный дом, ул.Деловая — Видеонаблюдение, домофон">
+                                <figure>
+                                    <img src="img/projects/12.webp" width="640" height="420"
+                                        alt="многоквартирный дом, ул.Деловая — Видеонаблюдение, домофон"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="dom2.html">многоквартирный дом, ул.Деловая</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 8000 м²</li>
+                                    <li>Сентябрь 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">Камеры, бесключевой
+                                    доступ.</p>
+                                <a class="btn btn--primary project-card__cta" href="sovok.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Третья шестерка -->
+                        <!-- Card -->
+                        <article class="project-card" data-category="fire" data-city="Нижний Новгород" data-size="420"
+                            data-date="2022-06-10">
+                            <a class="project-card__media" href="personal.html" aria-label="Подробнее: Персонал-центр">
+                                <figure>
+                                    <img src="img/projects/13.webp" width="640" height="420" alt="Персонал-центр"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="personal.html">Персонал-центр</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 50 м²</li>
+                                    <li>Июнь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Монтаж камер видеонаблюдения</p>
+                                <a class="btn btn--primary project-card__cta" href="personal.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="1100" data-date="2021-04-28">
+                            <a class="project-card__media" href="pozh.html"
+                                aria-label="Подробнее: Здание на ул.Пожарского 4">
+                                <figure>
+                                    <img src="img/projects/14.webp" width="640" height="420"
+                                        alt="Здание на ул.Пожарского 4" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="pozh.html">Здание на ул.Пожарского 4</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 400 м²</li>
+                                    <li>Апрель 2021</li>
+                                </ul>
+                                <p class="project-card__excerpt">Периметральная охрана, магнитоконтакты ворот, датчики
+                                    разбития стекла, тревожные кнопки.</p>
+                                <a class="btn btn--primary project-card__cta" href="pozh.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="780"
+                            data-date="2024-03-12">
+                            <a class="project-card__media" href="pravit.html"
+                                aria-label="Подробнее: Правительство Нижегородской области">
+                                <figure>
+                                    <img src="img/projects/15.webp" width="640" height="420"
+                                        alt="Правительство Нижегородской области" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="pravit.html">Правительство Нижегородской
+                                        области</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 4780 м²</li>
+                                    <li>Март 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">IP‑камеры 4K, видеостена на ресепшене, аналитика
+                                    движения и распознавание зон доступа.</p>
+                                <a class="btn btn--primary project-card__cta" href="pravit.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="access" data-city="Нижний Новгород" data-size="350"
+                            data-date="2023-02-02">
+                            <a class="project-card__media" href="rezhim.html" aria-label="Подробнее: Режимный объект">
+                                <figure>
+                                    <img src="img/projects/16.webp" width="640" height="420" alt="Режимный объект"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="rezhim.html">Режимный объект</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Контроль доступа</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 350 м²</li>
+                                    <li>Февраль 2023</li>
+                                </ul>
+                                <p class="project-card__excerpt">Контроль доступа</p>
+                                <a class="btn btn--primary project-card__cta" href="rezhim.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="520" data-date="2022-11-20">
+                            <a class="project-card__media" href="sambo.html"
+                                aria-label="Подробнее: СШОР по Самбо и Дзюдо">
+                                <figure>
+                                    <img src="img/projects/17.webp" width="640" height="420" alt="СШОР по Самбо и Дзюдо"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="sambo.html"> СШОР по Самбо и Дзюдо
+                                    </a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 2200 м²</li>
+                                    <li>Ноябрь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Зонирование помещений, круглосуточный мониторинг,
+                                    интеграция с ПЦН.</p>
+                                <a class="btn btn--primary project-card__cta" href="sambo.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Нижний Новгород" data-size="900"
+                            data-date="2024-09-08">
+                            <a class="project-card__media" href="dom3.html" aria-label="Подробнее: ТСЖ Островок">
+                                <figure>
+                                    <img src="img/projects/18.webp" width="640" height="420" alt="ТСЖ Островок"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="dom3.html">ТСЖ Островок</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 8000 м²</li>
+                                    <li>Сентябрь 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">Камеры, бесключевой
+                                    доступ.</p>
+                                <a class="btn btn--primary project-card__cta" href="sovok.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Четвертая шестерка -->
+                        <!-- Card -->
+                        <article class="project-card" data-category="fire" data-city="Нижний Новгород" data-size="420"
+                            data-date="2022-06-10">
+                            <a class="project-card__media" href="restoran.html" aria-label="Подробнее: Ресторан">
+                                <figure>
+                                    <img src="img/projects/19.webp" width="640" height="420" alt="Ресторан"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="restoran.html">Ресторан, ул.Минина 35</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 300 м²</li>
+                                    <li>Июнь 2022</li>
+                                </ul>
+                                <p class="project-card__excerpt">Монтаж камер видеонаблюдения</p>
+                                <a class="btn btn--primary project-card__cta" href="restoran.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="security" data-city="Нижний Новгород"
+                            data-size="1100" data-date="2021-04-28">
+                            <a class="project-card__media" href="bank.html"
+                                aria-label="Подробнее: Центробанк ул.Покровская">
+                                <figure>
+                                    <img src="img/projects/20.webp" width="640" height="420"
+                                        alt="Центробанк ул.Покровская" loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="bank.html">Центробанк ул.Покровская</a></h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Охранная сигнализация</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 4000 м²</li>
+                                    <li>Апрель 2021</li>
+                                </ul>
+                                <p class="project-card__excerpt">Периметральная охрана, магнитоконтакты ворот, датчики
+                                    разбития стекла, тревожные кнопки.</p>
+                                <a class="btn btn--primary project-card__cta" href="bank.html">Подробнее</a>
+                            </div>
+                        </article>
+
+                        <!-- Card -->
+                        <article class="project-card" data-category="cctv" data-city="Лысково" data-size="780"
+                            data-date="2024-03-12">
+                            <a class="project-card__media" href="skola.html" aria-label="Подробнее: школа г.Лысково">
+                                <figure>
+                                    <img src="img/projects/15.webp" width="640" height="420" alt="школа г.Лысково"
+                                        loading="lazy" />
+                                </figure>
+                            </a>
+                            <div class="project-card__body">
+                                <h3 class="project-card__title"><a href="skola.html">Школа г.Лысково</a>
+                                </h3>
+                                <ul class="project-card__meta">
+                                    <li>Категория: Видеонаблюдение</li>
+                                    <li>Город: Нижний Новгород</li>
+                                    <li>Площадь: 4780 м²</li>
+                                    <li>Март 2024</li>
+                                </ul>
+                                <p class="project-card__excerpt">IP‑камеры 4K, видеостена на ресепшене, аналитика
+                                    движения и распознавание зон доступа.</p>
+                                <a class="btn btn--primary project-card__cta" href="skola.html">Подробнее</a>
+                            </div>
+                        </article>
+                    </section>
+
+                    <!-- Pagination / Load more -->
+                    <nav class="projects__pagination" aria-label="Навигация по страницам проектов">
+                        <button class="btn btn--secondary js-load-more" type="button">Показать ещё</button>
+                        <ul class="pagination" role="list">
+                            <li class="pagination__item"><a class="pagination__link is-disabled" aria-disabled="true"
+                                    aria-label="Предыдущая страница">‹</a></li>
+                            <li class="pagination__item"><a class="pagination__link is-active" href="#"
+                                    aria-current="page">1</a></li>
+                            <li class="pagination__item"><a class="pagination__link" href="#">2</a></li>
+                            <li class="pagination__item"><a class="pagination__link" href="#">3</a></li>
+                            <li class="pagination__item"><a class="pagination__link" href="#"
+                                    aria-label="Следующая страница">›</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Aside column (filters) -->
+                <aside class="projects__aside" aria-label="Фильтры">
+                    <form class="projects-filter js-projects-filter" aria-describedby="projects-filter-help">
+                        <p id="projects-filter-help" class="sr-only">Выберите категории проектов.</p>
+                        <fieldset class="projects-filter__group" aria-label="Категории">
+                            <legend class="projects-filter__legend">Категории</legend>
+                            <div class="projects-filter__chips" role="tablist" aria-label="Категории проектов">
+                                <button type="button" class="chip is-active" data-filter="all" role="tab"
+                                    aria-selected="true">Все</button>
+                                <button type="button" class="chip" data-filter="fire" role="tab"
+                                    aria-selected="false">Пожарная</button>
+                                <button type="button" class="chip" data-filter="security" role="tab"
+                                    aria-selected="false">Охранная</button>
+                                <button type="button" class="chip" data-filter="cctv" role="tab"
+                                    aria-selected="false">Видеонаблюдение</button>
+                                <button type="button" class="chip" data-filter="access" role="tab"
+                                    aria-selected="false">СКУД</button>
+                            </div>
+                        </fieldset>
+
+                        <!-- <fieldset class="projects-filter__group" aria-label="Город">
+                            <legend class="projects-filter__legend">Город</legend>
+                            <label class="projects-filter__sort">
+                                <span class="sr-only">Фильтр по городу</span>
+                                <select class="select" name="city">
+                                    <option value="all">Все города</option>
+                                    <option>Нижний Новгород</option>
+                                    <option>Нижегородская область</option>
+                                    <option>Линц</option>
+                                    <option>Зальцбург</option>
+                                    <option>Клагенфурт</option>
+                                    <option>Инсбрук</option>
+                                </select>
+                            </label>
+                        </fieldset> -->
+
+                        <!-- <fieldset class="projects-filter__group" aria-label="Опции">
+                            <legend class="projects-filter__legend">Опции</legend>
+                            <label class="projects-filter__checkbox">
+                                <input type="checkbox" name="hasVideo" /> Есть видео
+                            </label>
+                        </fieldset> -->
+                    </form>
+                    <!-- Optional toolbar (search + sort) -->
+                    <form class="projects-toolbar" aria-label="Поиск и сортировка">
+                        <label class="projects-toolbar__search">
+                            <span class="sr-only">Поиск по названию или адресу</span>
+                            <input type="search" class="input" name="q" placeholder="Поиск по проектам…"
+                                autocomplete="off" inputmode="search" />
+                        </label>
+                        <!-- <label class="projects-toolbar__sort">
+                            <span class="sr-only">Сортировка</span>
+                            <select class="select" name="sort">
+                                <option value="date_desc">Сначала новые</option>
+                                <option value="date_asc">Сначала старые</option>
+                                <option value="size_desc">По площади: убыв.</option>
+                                <option value="size_asc">По площади: возр.</option>
+                            </select>
+                        </label> -->
+                    </form>
+
+                    <!-- Empty state (hidden by default) -->
+                    <div class="projects__empty" hidden>
+                        <p>По заданным условиям ничего не найдено. Попробуйте изменить фильтры.</p>
+                    </div>
+                </aside>
+            </section>
+        </main>
+
+
+
+        <footer class="footer">
+            <div class="container footer__inner">
+                <div class="footer__copy">
+                    © 2025 АС Монтаж. Все права защищены.
+                </div>
+
+                <nav class="footer__nav">
+                    <ul class="footer__menu">
+                        <li><a href="privacy.html">Защита данных</a></li>
+                        <li><a href="terms.html">Пользовательское соглашение</a></li>
+                        <li><a href="vacancies.html">Вакансии</a></li>
+                        <li><a href="requisites.html">Реквизиты</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer__dev">
+                    Разработка —
+                    <a href="https://t.me/aamineev" target="_blank" rel="noopener"
+                        aria-label="Написать в Telegram @aamineev">
+                        <svg class="tg-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M9.7 14.7l-.3 4.6c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.7.4 1.2.2 1.4-.6l2.6-12.2c.2-.9-.3-1.3-1-1.1L4 10.3c-.8.2-.8.7-.1.9l4.3 1.3 10-6.3c.5-.3.9-.1.5.2l-9 8.3z"
+                                fill="currentColor" />
+                        </svg>
+                        @aamineev
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <button class="to-top" aria-label="Наверх">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module" src="/js/projects.js"></script>
+</body>
+
+</html>
+
+<!--  Notes for integration (remove in production):
+  - data-category, data-city, data-size, data-date — пригодятся для JS‑фильтров/сортировки.
+  - aria‑атрибуты добавлены для доступности (A11y).
+  - Замените placeholder.webp на реальные обложки проектов (соотношение 16:10 / 3:2).
+  - Ссылки href на реальные страницы проектов (single-project.html или WP single-project.php).
+  -->

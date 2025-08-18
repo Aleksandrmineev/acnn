@@ -161,9 +161,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.querySelector(".modal__close").addEventListener("click", () => {
-    document.getElementById("serviceModal").style.display = "none";
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('.modal__close');
+  if (!closeBtn) return; // На странице нет модалки — выходим
+
+  const modal = document.getElementById('serviceModal');
+  closeBtn.addEventListener('click', () => {
+    if (modal) modal.style.display = 'none';
   });
+});
+
 
   window.addEventListener("click", (e) => {
     const modal = document.getElementById("serviceModal");

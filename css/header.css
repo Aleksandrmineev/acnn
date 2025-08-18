@@ -11,6 +11,8 @@
   color: #fff;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
   z-index: 1;
+  background: rgba(30, 144, 255, 0.6); /* полупрозрачный синий */
+  backdrop-filter: blur(4px); /* опционально: эффект "стекла" */
 }
 
 .header__inner {
