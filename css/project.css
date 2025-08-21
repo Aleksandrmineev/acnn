@@ -1,0 +1,83 @@
+/* 1–2 слайда: без Swiper */
+.js-project-slider.no-swiper .swiper-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap);
+  }
+  @media (min-width: 768px) {
+    .js-project-slider.no-swiper.has-2 .swiper-wrapper {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .js-project-slider.no-swiper .swiper-pagination,
+  .js-project-slider.no-swiper .swiper-button-prev,
+  .js-project-slider.no-swiper .swiper-button-next { display: none; }
+  
+  /* База */
+  .project__slider .swiper-slide {
+    aspect-ratio: 16 / 9;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: clamp(20px, 3vh, 40px) auto;
+  }
+  
+  .project__slider .swiper-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+  }
+  
+  /* --- UI как на скрине: белые круглые кнопки, чёрная обводка, синяя активная точка --- */
+  .slider-ui .slider-ui__controls{
+    display:flex; align-items:center; justify-content:center;
+    gap: calc(var(--gap) * 0.7); margin-top: 16px;
+  }
+  
+  /* круглые стрелки */
+.slider-ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+  .slider-ui .swiper-button-prev,
+  .slider-ui .swiper-button-next {
+    position: static !important;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-text);      /* чёрная обводка */
+    background: var(--clr-white);           /* белый фон */
+    display: inline-flex; align-items:center; justify-content:center;
+    cursor: pointer;
+margin: 0 20px;
+  }
+  /* иконки-стрелки */
+  .slider-ui .swiper-button-prev::after,
+  .slider-ui .swiper-button-next::after{
+    content:''; width:10px; height:10px;
+    border-top:2px solid var(--clr-text);
+    border-right:2px solid var(--clr-text);
+  }
+  .slider-ui .swiper-button-prev::after{ transform: rotate(-135deg); } /* ← */
+  .slider-ui .swiper-button-next::after{ transform: rotate(45deg); }   /* → */
+  
+  /* точки */
+  .slider-ui .swiper-pagination{ position: static; display:flex; gap:8px; }
+  .slider-ui .swiper-pagination-bullet{
+    width:8px; height:8px; background: var(--clr-text); opacity:.3;
+    transition: opacity .2s, transform .2s;
+  }
+  .slider-ui .swiper-pagination-bullet-active{
+    opacity:1; transform: scale(1.15); background: var(--clr-accent); /* синяя активная */
+  }
+  
+
+  /* Тексты ниже слайдера */
+
+  .project__lead {
+    margin-top: 20px;
+  }

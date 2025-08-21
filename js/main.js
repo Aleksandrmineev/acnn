@@ -226,3 +226,40 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 });
+
+
+// Слайдер на странице проекта
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.querySelector('.js-project-slider');
+  if (!el) return;
+
+  const slidesCount = el.querySelectorAll('.swiper-slide').length;
+
+  // 1–2 слайда: не инициализируем Swiper
+  if (slidesCount <= 2) {
+    el.classList.add('no-swiper');
+    if (slidesCount === 2) el.classList.add('has-2');
+    return;
+  }
+
+  // 3+ слайда: полноценный Swiper
+  new Swiper(el, {
+    loop: true,
+    spaceBetween: 24,
+    slidesPerView: 1,
+    breakpoints: {
+      768: { slidesPerView: 2 }
+    },
+    pagination: {
+      el: el.querySelector('.project__pagination'),
+      clickable: true
+    },
+    navigation: {
+      prevEl: el.querySelector('.project__prev'),
+      nextEl: el.querySelector('.project__next')
+    },
+    // чтобы не прыгал при скрытии/появлении
+    observer: true,
+    observeParents: true
+  });
+});

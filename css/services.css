@@ -128,9 +128,9 @@
 }
 
 .services__nav {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
   gap: 12px;
   margin-top: 16px;
 }
@@ -140,6 +140,11 @@
 .services__pagination .swiper-pagination-bullet-active {
   opacity: 1;
 }
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: auto;
+}
+
 .services__prev,
 .services__next {
   width: 40px;
