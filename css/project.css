@@ -607,3 +607,73 @@ ol.list--num li:hover::before {
   .list li::before { transition: none; }
   .list li:hover { transform: none; }
 }
+/* ===== GLightbox — чистые стили без псевдоиконок ===== */
+:root{
+  --lb-btn-size: 44px;
+  --lb-btn-radius: var(--btn-radius, 8px);
+  --lb-btn-bg: rgba(0,0,0,.45);
+  --lb-btn-bg-hover: rgba(0,0,0,.6);
+  --lb-btn-color: var(--clr-white, #fff);
+}
+
+.glightbox-container{
+  z-index: 9999; /* поверх всего */
+}
+
+/* Кнопки управления */
+.glightbox-clean .gclose,
+.glightbox-clean .gnext,
+.glightbox-clean .gprev{
+  display: grid;
+  place-items: center;
+  width: var(--lb-btn-size);
+  height: var(--lb-btn-size);
+  border-radius: var(--lb-btn-radius);
+  background: var(--lb-btn-bg);
+  color: var(--lb-btn-color);
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,.18);
+}
+
+/* Позиции */
+.glightbox-clean .gclose{ top: 16px; right: 16px; }
+.glightbox-clean .gnext{ right: 16px; }
+.glightbox-clean .gprev{ left: 16px; }
+
+/* Ховер/фокус */
+.glightbox-clean .gclose:hover,
+.glightbox-clean .gnext:hover,
+.glightbox-clean .gprev:hover{
+  background: var(--lb-btn-bg-hover);
+  transform: translateY(-1px);
+}
+.glightbox-clean .gclose:focus-visible,
+.glightbox-clean .gnext:focus-visible,
+.glightbox-clean .gprev:focus-visible{
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 2px;
+}
+
+/* Встроенные SVG-иконки — задаём размер/цвет */
+.glightbox-clean .gclose svg,
+.glightbox-clean .gnext svg,
+.glightbox-clean .gprev svg{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Тач-устройства: крупнее зона нажатия */
+@media (hover: none){
+  :root{ --lb-btn-size: 52px; }
+}
+
+/* Reduce motion — убираем микродвижение */
+@media (prefers-reduced-motion: reduce){
+  .glightbox-clean .gclose,
+  .glightbox-clean .gnext,
+  .glightbox-clean .gprev{
+    transition: none;
+  }
+}

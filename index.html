@@ -18,7 +18,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css">
+
+  <!-- Свайпер -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/fonts.css" />
@@ -298,7 +301,7 @@
               <div class="card__overlay">
                 <h3 class="card__title2">Аптека пл.Свободы</h3>
                 <p class="card__subtitle">
-                  Категория: Пожарная сигнализация · Тип: Монтаж
+                  Категория: Коммерческое здание · Тип: Монтаж СПС, СОУЭ
                 </p>
                 <span class="btn btn--secondary portfolio-card__btn">
                   Подробнее
@@ -306,20 +309,19 @@
               </div>
             </div>
           </a>
-          <!-- Карточка проекта 2 Школы Лысково-->
-          <div class="card">
-            <div class="card__image" style="background-image: url('img/portfolio/cover-shkola.webp')">
+          <!-- Карточка проекта 2 Школа Лысково -->
+          <a href="./html/project-lyskovo-school.html" class="card" aria-label="Школа Лысково — Подробнее о проекте">
+            <div class="card__image" style="background-image: url('img/portfolio/cover-shkola.webp');">
               <div class="card__overlay">
                 <h3 class="card__title2">Школа Лысково</h3>
                 <p class="card__subtitle">
-                  Категория: Промышленность · Тип: Монтаж
+                  Категория: Учебное заведение · Тип: Монтаж СПС, СОУЭ
                 </p>
-                <button class="btn btn--secondary portfolio-card__btn">
-                  Подробнее
-                </button>
+                <span class="btn btn--secondary portfolio-card__btn">Подробнее</span>
               </div>
             </div>
-          </div>
+          </a>
+
           <!-- Карточка проекта 3 Центробанк Покровская-->
           <div class="card">
             <div class="card__image" style="
@@ -328,7 +330,7 @@
               <div class="card__overlay">
                 <h3 class="card__title2">Центробанк Покровская</h3>
                 <p class="card__subtitle">
-                  Категория: Промышленность · Тип: Монтаж
+                  Категория: Промышленность · Тип: Монтаж СПС, СОУЭ
                 </p>
                 <button class="btn btn--secondary portfolio-card__btn">
                   Подробнее
@@ -621,8 +623,9 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+  <script src="./js/main.js" defer></script>
 </body>
 
 </html>
