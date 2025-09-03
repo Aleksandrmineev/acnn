@@ -79,5 +79,531 @@ margin: 0 20px;
   /* Тексты ниже слайдера */
 
   .project__lead {
-    margin-top: 20px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-base);
+    color: var(--clr-text);
+    font-weight: 600;
+    word-break: break-word;
   }
+
+  /* Факты о проекте */
+  /* ===== Project Facts ===== */
+.project__facts {
+  background: var(--clr-light-bg);
+  padding: var(--section-padding) 0;
+}
+
+.project__facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gap);
+}
+
+/* Card */
+.fact-card {
+  position: relative;
+  background: var(--clr-white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: clamp(16px, 2.5vw, 22px) clamp(16px, 3vw, 24px);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Акцентная полоска сверху — анимируется на ховере */
+.fact-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--clr-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+  opacity: .95;
+}
+
+/* Мягкое подсветение по краям */
+.fact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 80% at 0% 0%, rgba(0,91,255,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+.fact-card:hover,
+.fact-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.10);
+  border-color: rgba(0, 91, 255, 0.20);
+}
+
+.fact-card:hover::after,
+.fact-card:focus-within::after {
+  transform: scaleX(1);
+}
+
+.fact-card:hover::before,
+.fact-card:focus-within::before {
+  opacity: 1;
+}
+
+/* Content */
+.fact-card__label {
+  font-size: var(--font-size-cell-title);
+  line-height: var(--line-height-base);
+  color: var(--clr-text-light);
+  text-transform: var(--font-uppercase);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.fact-card__value {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-base);
+  color: var(--clr-text);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* Узкие экраны */
+@media (max-width: 768px) {
+  .project__facts { padding: var(--section-padding-mobile) 0; }
+  .fact-card { padding: 16px 18px; }
+  .fact-card__value { font-weight: 600; }
+}
+
+/* Доступность: меньше анимаций для пользователей с reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .fact-card,
+  .fact-card::after,
+  .fact-card::before {
+    transition: none;
+  }
+  .fact-card:hover,
+  .fact-card:focus-within {
+    transform: none;
+  }
+}
+
+/* Добавьте модификатор классу: project__facts-grid project__facts-grid--center */
+.project__facts-grid--center{
+  display:grid;
+  gap: var(--gap);
+  /* фиксируем разумную ширину карточки и центрируем треки */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-content: center;
+}
+
+/* На широких экранах «стараемся» держать 3 колонки, но центрируем последнюю строку */
+@media (min-width: 992px){
+  .project__facts-grid--center{
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center; /* центровка неполного ряда */
+  }
+}
+
+
+/* Контейнер ШАГОВ */
+/* ===== Project Process ===== */
+.project__process {
+  background: var(--clr-light-bg);
+  padding: var(--section-padding) 0;
+}
+
+.project__process h2 {
+  text-align: center;
+  margin-bottom: clamp(18px, 2vw, 28px);
+}
+
+/* Сетка шагов */
+.process-steps {
+  counter-reset: step;
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: start;
+}
+
+/* Карточка шага */
+.step {
+  position: relative;
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  padding: clamp(18px, 2.4vw, 24px) clamp(18px, 3vw, 28px);
+  box-shadow: var(--shadow-card);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+  overflow: hidden;
+}
+
+/* Акцентная верхняя полоска + мягкая подсветка */
+.step::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--clr-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+  opacity: .95;
+}
+
+.step::before {
+  /* Номер шага в круге */
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  top: clamp(14px, 1.8vw, 18px);
+  left: clamp(14px, 1.8vw, 18px);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--clr-white);
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+}
+
+/* Отступы с учётом бейджа */
+.step h3 {
+  padding-left: 56px;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-base);
+  color: var(--clr-card-title);
+  margin-bottom: .5rem;
+}
+
+.step p,
+.step ul {
+  margin-top: .35rem;
+  color: var(--clr-text);
+  line-height: var(--line-height-base);
+  font-size: var(--font-size-base);
+}
+
+.step ul {
+  padding-left: 1.2rem;
+}
+
+/* Hover/focus */
+.step:hover,
+.step:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+  border-color: rgba(0,91,255,.2);
+}
+.step:hover::after,
+.step:focus-within::after {
+  transform: scaleX(1);
+}
+
+/* Опционально: таймлайн-коннектор на десктопе */
+.process-steps--timeline {
+  position: relative;
+}
+@media (min-width: 992px) {
+  .process-steps--timeline {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .process-steps--timeline .step {
+    /* линия между карточками — у всех, кроме последней */
+    isolation: isolate;
+  }
+  .process-steps--timeline .step:not(:last-child)::marker { content: ""; } /* на всякий случай */
+  .process-steps--timeline .step:not(:last-child)::selection { background: transparent; }
+
+  .process-steps--timeline .step::selection { background: transparent; } /* не влияет, просто чистота */
+
+  .process-steps--timeline .step:not(:last-child)::after {
+    /* переиспользуем after: первый слой — верхняя полоса, второй — коннектор */
+  }
+  .process-steps--timeline .step:not(:last-child)::before {
+    /* номер — уже есть, ничего не меняем */
+  }
+  /* Горизонтальный коннектор: отдельный псевдоэлемент */
+  .process-steps--timeline .step::part(connector) { /* подсказка: не требуется, просто заметка */ }
+
+  .process-steps--timeline .step:not(:last-child)::before,
+  .process-steps--timeline .step:not(:last-child)::after { /* уже есть */ }
+
+  .process-steps--timeline .step:not(:last-child) {
+    /* рисуем линию после карточки */
+  }
+  .process-steps--timeline .step:not(:last-child)::cue { /* декоративно */ }
+
+  .process-steps--timeline .step:not(:last-child) .step-connector { display: none; }
+}
+
+/* Реалистичный коннектор (без лишней магии): используем дополнительный ::after-2 через background */
+@media (min-width: 992px) {
+  .process-steps--timeline .step {
+    background:
+      linear-gradient(90deg, rgba(0,91,255,.18), rgba(0,91,255,0)) 100% 50% / 32px 2px no-repeat,
+      var(--clr-white);
+  }
+  .process-steps--timeline .step:last-child {
+    background: var(--clr-white); /* у последнего — без линии */
+  }
+}
+
+/* Мобильные отступы */
+@media (max-width: 768px) {
+  .project__process { padding: var(--section-padding-mobile) 0; }
+  .step h3 { padding-left: 52px; }
+}
+
+/* A11y: меньше анимаций при reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .step, .step::after { transition: none; }
+  .step:hover, .step:focus-within { transform: none; }
+}
+
+/* ===== Project Outcome / Quote ===== */
+.project__outcome {
+  background: var(--clr-light-bg);
+  padding: var(--section-padding) 0;
+}
+
+.project__outcome .container {
+  display: grid;
+  justify-items: center;
+  gap: clamp(16px, 3vw, 28px);
+}
+
+/* Карточка цитаты */
+.quote {
+  position: relative;
+  max-width: min(920px, 100%);
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: clamp(18px, 2.8vw, 32px) clamp(20px, 3.2vw, 36px);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  overflow: hidden;
+}
+
+/* Акцентная полоса сверху */
+.quote::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--clr-accent);
+  opacity: .95;
+}
+
+/* Большая декоративная кавычка (фоновая) */
+.quote::after {
+  content: "“";
+  position: absolute;
+  top: clamp(6px, 1.8vw, 12px);
+  right: clamp(10px, 2.4vw, 18px);
+  font-size: clamp(64px, 10vw, 120px);
+  line-height: 1;
+  color: rgba(0,0,0,.05);
+  font-weight: 700;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Текст и автор */
+.quote p {
+  font-size: var(--font-size-card-item);
+  line-height: var(--line-height-lg);
+  color: var(--clr-text);
+}
+
+.quote cite {
+  display: block;
+  margin-top: clamp(10px, 1.6vw, 14px);
+  font-style: normal;
+  font-weight: 600;
+  color: var(--clr-card-title);
+  font-size: var(--font-size-base);
+  letter-spacing: 0.01em;
+}
+
+/* Микро-ховер для карточки */
+.quote:hover,
+.quote:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(0,91,255,.20);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+/* Кнопка — центр, отступ */
+.project__outcome .btn {
+  margin-top: 4px;
+}
+
+/* Мобильные правки */
+@media (max-width: 768px) {
+  .project__outcome { padding: var(--section-padding-mobile) 0; }
+  .quote { padding: 16px 18px; }
+  .quote::after { font-size: 72px; opacity: .06; }
+}
+
+/* A11y: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .quote { transition: none; }
+  .quote:hover, .quote:focus-within { transform: none; }
+}
+
+/* ===== Lists (UL/OL) — base ===== */
+.list,
+.list ul,
+.list ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  margin: clamp(6px, 1.2vw, 10px) 0;
+  padding-left: 1.6rem;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--clr-text);
+  transition: transform .2s ease, color .2s ease;
+}
+
+.list li:hover {
+  transform: translateX(2px);
+}
+
+/* Текст в li: ссылки и т.п. */
+.list li a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: .08em;
+  text-underline-offset: .18em;
+}
+
+/* Вложенные списки — компактнее и светлее */
+.list li > ul,
+.list li > ol {
+  margin-top: .35rem;
+}
+.list li > ul li,
+.list li > ol li {
+  color: var(--clr-text-light);
+  padding-left: 1.4rem;
+  margin: .35rem 0;
+}
+
+/* ===== Модификатор: круглые буллеты ===== */
+.list--bullet li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  box-shadow: 0 0 0 3px rgba(0, 91, 255, 0.10);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.list--bullet li:hover::before {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(0, 91, 255, 0.14);
+}
+
+/* ===== Модификатор: галочки ===== */
+.list--check li {
+  padding-left: 2.2rem;
+}
+.list--check li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: .1em;
+  width: 1.45rem;
+  height: 1.45rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--clr-white);
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  box-shadow: 0 6px 16px rgba(0,0,0,.10);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.list--check li:hover::before {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.12);
+}
+
+/* ===== Модификатор: нумерованный (для <ol>) ===== */
+ol.list--num {
+  counter-reset: num;
+}
+ol.list--num li {
+  counter-increment: num;
+  padding-left: 2.4rem;
+}
+ol.list--num li::before {
+  content: counter(num);
+  position: absolute;
+  left: 0;
+  top: .02em;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--clr-card-title);
+  background: var(--clr-gray);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.06);
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+}
+ol.list--num li:hover::before {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, var(--clr-white), var(--clr-light-bg));
+}
+
+/* ===== Компактная версия для карточек ===== */
+.list--compact li {
+  margin: .25rem 0;
+  padding-left: 1.3rem;
+  font-size: var(--font-size-card-item);
+}
+
+/* ===== Тёмный фон (контрастный блок) ===== */
+.list--on-dark li { color: var(--clr-white); }
+.list--on-dark li::before { box-shadow: 0 0 0 3px rgba(255,255,255,.10); }
+.list--on-dark li a { color: var(--clr-white); }
+
+/* ===== Мобайл правки ===== */
+@media (max-width: 768px) {
+  .list li { padding-left: 1.4rem; }
+  .list--check li { padding-left: 2rem; }
+}
+
+/* ===== A11y: меньше анимаций ===== */
+@media (prefers-reduced-motion: reduce) {
+  .list li,
+  .list li::before { transition: none; }
+  .list li:hover { transform: none; }
+}
