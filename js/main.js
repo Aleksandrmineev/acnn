@@ -294,3 +294,57 @@ function initProjectSliderWithLightbox() {
   // Если будете динамически менять слайды:
   // swiper.on('slideChangeTransitionEnd', () => { lightbox && lightbox.reload(); });
 }
+
+// === Процесс: скрываем лишние пункты и добавляем кнопку ===
+// Раскрывающиеся списки в шагах процесса
+function initProcessCollapsible(maxItems = 1) {
+  document.querySelectorAll('.project__process .step').forEach((step) => {
+    // чтобы не инициализировать повторно
+    if (step.dataset.collapsibleInit === '1') return;
+
+    // берём первый список в шаге
+    const list = step.querySelector(':scope > ul, :scope > ol');
+    if (!list) return;
+
+    const items = Array.from(list.children).filter(el => el.tagName === 'LI');
+    if (items.length <= maxItems) return;
+
+    // хвост такого же типа (ul/ol)
+    const tail = list.cloneNode(false);
+    tail.classList.add('step__hidden-list');
+    if (list.tagName === 'OL') {
+      tail.setAttribute('start', String(maxItems + 1)); // правильная нумерация
+    }
+    items.slice(maxItems).forEach(li => tail.appendChild(li)); // переносим лишние пункты
+    tail.hidden = true;
+
+    // маска и кнопка
+    const fade = document.createElement('div');
+    fade.className = 'step__fade';
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step__toggle';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = 'Показать ещё';
+
+    // вставка
+    list.insertAdjacentElement('afterend', fade);
+    fade.insertAdjacentElement('afterend', tail);
+    step.appendChild(btn);
+    step.classList.add('step--collapsible');
+    step.dataset.collapsibleInit = '1';
+
+    // поведение
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      tail.hidden = expanded;
+      step.classList.toggle('is-open', !expanded);
+      btn.textContent = expanded ? 'Показать ещё' : 'Свернуть';
+    });
+  });
+}
+
+// вызовите рядом с другими инициализациями
+initProcessCollapsible(3); // показывать по умолчанию первые 3 пункта

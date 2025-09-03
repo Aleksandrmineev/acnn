@@ -677,3 +677,46 @@ ol.list--num li:hover::before {
     transition: none;
   }
 }
+
+
+/* ===== Steps: раскрывающиеся списки ===== */
+.step { position: relative; }
+
+/* Плавная маска внизу, пока список скрыт */
+.step--collapsible .step__fade{
+  position: absolute;
+  left: 0; right: 0;
+  height: 56px;
+  bottom: clamp(48px, 7vw, 56px); /* место под кнопку */
+  background: linear-gradient(to bottom, rgba(255,255,255,0), var(--clr-white));
+  pointer-events: none;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+/* Кнопка раскрытия */
+.step__toggle{
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--btn-padding-block) var(--btn-padding-inline);
+  border-radius: var(--btn-radius);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  background: var(--clr-gray);
+  color: var(--clr-text);
+  border: 1px solid rgba(0,0,0,.08);
+  cursor: pointer;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.step__toggle:hover{ background: var(--clr-light-bg); transform: translateY(-1px); }
+.step__toggle[aria-expanded="true"]{ background: var(--clr-white); border-color: rgba(0,0,0,.12); }
+
+/* При раскрытии маску убираем */
+.step.is-open .step__fade{ display: none; }
+
+/* Тёмные карточки (если будут) */
+.step--on-dark .step__fade{
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.6));
+}
