@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectSliderWithLightbox();
 });
 
+
+const mm = document.querySelector('.mobile-menu');
+if (mm && mm.parentElement !== document.body) {
+  document.body.appendChild(mm); // вытаскиваем из любых трансформированных родителей
+}
+
 /* =========================
    ФОРМА
 ========================= */
@@ -296,55 +302,113 @@ function initProjectSliderWithLightbox() {
 }
 
 // === Процесс: скрываем лишние пункты и добавляем кнопку ===
-// Раскрывающиеся списки в шагах процесса
-function initProcessCollapsible(maxItems = 1) {
-  document.querySelectorAll('.project__process .step').forEach((step) => {
-    // чтобы не инициализировать повторно
-    if (step.dataset.collapsibleInit === '1') return;
+function initProcessTabs(selector = '.js-process-tabs') {
+  document.querySelectorAll(selector).forEach(root => {
+    const tablist = root.querySelector('.process-tabs__list');
+    const tabs = Array.from(root.querySelectorAll('.process-tab'));
+    const panels = Array.from(root.querySelectorAll('.process-panel'));
 
-    // берём первый список в шаге
-    const list = step.querySelector(':scope > ul, :scope > ol');
-    if (!list) return;
+    if (!tablist || !tabs.length || !panels.length) return;
 
-    const items = Array.from(list.children).filter(el => el.tagName === 'LI');
-    if (items.length <= maxItems) return;
+    // Helpers
+    const byId = id => root.querySelector(`#${id}`);
+    const activate = (tab) => {
+      const targetId = tab.getAttribute('aria-controls');
+      const panel = byId(targetId);
+      // deactivate all
+      tabs.forEach(t => {
+        t.classList.remove('is-active');
+        t.setAttribute('aria-selected', 'false');
+        t.setAttribute('tabindex', '-1');
+      });
+      panels.forEach(p => {
+        p.classList.remove('is-active');
+        p.hidden = true;
+      });
+      // activate current
+      tab.classList.add('is-active');
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
+      if (panel) {
+        panel.hidden = false;
+        panel.classList.add('is-active');
+      }
+      // прокрутка вкладки в область видимости на мобайле
+      tab.scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
+    };
 
-    // хвост такого же типа (ul/ol)
-    const tail = list.cloneNode(false);
-    tail.classList.add('step__hidden-list');
-    if (list.tagName === 'OL') {
-      tail.setAttribute('start', String(maxItems + 1)); // правильная нумерация
-    }
-    items.slice(maxItems).forEach(li => tail.appendChild(li)); // переносим лишние пункты
-    tail.hidden = true;
-
-    // маска и кнопка
-    const fade = document.createElement('div');
-    fade.className = 'step__fade';
-
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'step__toggle';
-    btn.setAttribute('aria-expanded', 'false');
-    btn.textContent = 'Показать ещё';
-
-    // вставка
-    list.insertAdjacentElement('afterend', fade);
-    fade.insertAdjacentElement('afterend', tail);
-    step.appendChild(btn);
-    step.classList.add('step--collapsible');
-    step.dataset.collapsibleInit = '1';
-
-    // поведение
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      tail.hidden = expanded;
-      step.classList.toggle('is-open', !expanded);
-      btn.textContent = expanded ? 'Показать ещё' : 'Свернуть';
+    // Click
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activate(tab));
     });
+
+    // Keyboard a11y
+    tablist.addEventListener('keydown', (e) => {
+      const current = document.activeElement;
+      if (!current.classList.contains('process-tab')) return;
+
+      let idx = tabs.indexOf(current);
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        idx = (idx + 1) % tabs.length; e.preventDefault();
+        tabs[idx].focus(); activate(tabs[idx]);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        idx = (idx - 1 + tabs.length) % tabs.length; e.preventDefault();
+        tabs[idx].focus(); activate(tabs[idx]);
+      } else if (e.key === 'Home') {
+        e.preventDefault(); tabs[0].focus(); activate(tabs[0]);
+      } else if (e.key === 'End') {
+        e.preventDefault(); tabs[tabs.length - 1].focus(); activate(tabs[tabs.length - 1]);
+      }
+    });
+
+    // Deep link by hash: #process-solutions
+    const openByHash = () => {
+      const { hash } = window.location;
+      if (!hash) return;
+      // ожидаем формат #process-<data-tab>
+      const m = hash.match(/^#process-([\w-]+)$/i);
+      if (!m) return;
+      const value = m[1];
+      const tab = tabs.find(t => t.dataset.tab === value);
+      if (tab) activate(tab);
+    };
+    openByHash();
+    window.addEventListener('hashchange', openByHash);
   });
 }
 
-// вызовите рядом с другими инициализациями
-initProcessCollapsible(3); // показывать по умолчанию первые 3 пункта
+// вызов после DOMContentLoaded (у тебя уже есть общий блок инициализаций)
+initProcessTabs();
+
+// Слайдер Похожие проекты
+function initRelatedSlider() {
+  const el = document.querySelector('.js-related-slider');
+  if (!el || typeof Swiper !== 'function') return;
+
+  // eslint-disable-next-line no-new
+  new Swiper(el, {
+    slidesPerView: 1,
+    spaceBetween: 16,
+    loop: true,
+    watchOverflow: true,
+    keyboard: { enabled: true },
+    a11y: { enabled: true },
+    breakpoints: {
+      640: { slidesPerView: 2, spaceBetween: 16 },
+      992: { slidesPerView: 3, spaceBetween: 24 }
+    },
+    pagination: {
+      el: el.querySelector('.related__pagination'),
+      clickable: true
+    },
+    navigation: {
+      prevEl: el.querySelector('.related__prev'),
+      nextEl: el.querySelector('.related__next')
+    },
+    preventClicks: false,
+    preventClicksPropagation: false
+  });
+}
+
+// вызов после DOMContentLoaded (у тебя уже есть общий блок инициализаций)
+initRelatedSlider();

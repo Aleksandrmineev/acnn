@@ -137,41 +137,62 @@
         <section class="project__process">
             <div class="container">
                 <h2>Как мы выполняли проект</h2>
-                <div class="process-steps process-steps--timeline">
-                    <div class="step">
-                        <h3>Исходные данные</h3>
-                        <ul class="list list--bullet">
-                            <li>Наличие существующих коммуникаций и щитов, требовалась ревизия.</li>
-                            <li>Требование привести объект к актуальным нормам пожарной безопасности и связи.</li>
-                        </ul>
+
+                <div class="process-tabs js-process-tabs" id="process">
+                    <!-- Tablist -->
+                    <div class="process-tabs__list" role="tablist" aria-label="Этапы проекта">
+                        <button class="process-tab is-active" id="tab-input" role="tab" aria-selected="true"
+                            aria-controls="panel-input" tabindex="0" data-tab="input">Исходные данные</button>
+
+                        <button class="process-tab" id="tab-challenges" role="tab" aria-selected="false"
+                            aria-controls="panel-challenges" tabindex="-1" data-tab="challenges">Задачи и
+                            вызовы</button>
+
+                        <button class="process-tab" id="tab-solutions" role="tab" aria-selected="false"
+                            aria-controls="panel-solutions" tabindex="-1" data-tab="solutions">Решения</button>
+
+                        <button class="process-tab" id="tab-result" role="tab" aria-selected="false"
+                            aria-controls="panel-result" tabindex="-1" data-tab="result">Результат</button>
                     </div>
-                    <div class="step">
-                        <h3>Задачи и вызовы</h3>
-                        <ul class="list list--bullet">
-                            <li>Стеснённые условия и плотная застроенность потолочного пространства.</li>
-                        </ul>
-                        <p></p>
-                    </div>
-                    <div class="step">
-                        <h3>Решения</h3>
-                        <ul class="list list--bullet">
-                            <li>СПС (система пожарной сигнализации): детектирование пожара, управление смежными
-                                системами и запуск сценариев СОУЭ; аккуратная прокладка линий, маркировка, кроссировка.
-                            </li>
-                            <li>СОУЭ (система оповещения и управления эвакуацией): зональное речевое/световое
-                                оповещение, табло «Выход», сценарии для безопасной эвакуации.</li>
-                            <li>Пылезащищённый монтаж: локальная изоляция зоны работ, пылеулавливание, чистовой
-                                контроль.</li>
-                            <li>Документация и согласования: исполнительная схема, журналы испытаний, акты.</li>
-                        </ul>
-                    </div>
-                    <div class="step">
-                        <h3>Результат</h3>
-                        <ul class="list list--bullet">
-                            <li>Соответствие нормативным требованиям подтверждено.</li>
-                            <li>Акты выполненных работ подписаны, системы введены в эксплуатацию.</li>
-                            <li>Сдали вовремя, аптека работает в обычном режиме.</li>
-                        </ul>
+
+                    <!-- Panels -->
+                    <div class="process-tabs__content">
+                        <section id="panel-input" class="process-panel is-active" role="tabpanel" tabindex="0"
+                            aria-labelledby="tab-input">
+                            <ul class="list list--bullet">
+                                <li>Наличие существующих коммуникаций и щитов, требовалась ревизия.</li>
+                                <li>Требование привести объект к актуальным нормам пожарной безопасности и связи.</li>
+                            </ul>
+                        </section>
+
+                        <section id="panel-challenges" class="process-panel" role="tabpanel" tabindex="0"
+                            aria-labelledby="tab-challenges" hidden>
+                            <ul class="list list--bullet">
+                                <li>Стеснённые условия и плотная застроенность потолочного пространства.</li>
+                            </ul>
+                        </section>
+
+                        <section id="panel-solutions" class="process-panel" role="tabpanel" tabindex="0"
+                            aria-labelledby="tab-solutions" hidden>
+                            <ul class="list list--bullet">
+                                <li>СПС: детектирование пожара, управление смежными системами, запуск сценариев СОУЭ;
+                                    аккуратная прокладка линий, маркировка, кроссировка.</li>
+                                <li>СОУЭ: зональное речевое/световое оповещение, табло «Выход», сценарии для безопасной
+                                    эвакуации.</li>
+                                <li>Пылезащищённый монтаж: локальная изоляция зоны работ, пылеулавливание, чистовой
+                                    контроль.</li>
+                                <li>Документация и согласования: исполнительная схема, журналы испытаний, акты.</li>
+                            </ul>
+                        </section>
+
+                        <section id="panel-result" class="process-panel" role="tabpanel" tabindex="0"
+                            aria-labelledby="tab-result" hidden>
+                            <ul class="list list--bullet">
+                                <li>Соответствие нормативным требованиям подтверждено.</li>
+                                <li>Акты выполненных работ подписаны, системы введены в эксплуатацию.</li>
+                                <li>Сдали вовремя, аптека работает в обычном режиме.</li>
+                            </ul>
+                        </section>
                     </div>
                 </div>
             </div>
@@ -189,6 +210,7 @@
             </div>
         </section>
 
+        <!-- Контакты -->
         <section class="contacts" id="contacts">
             <div class="container contacts__container">
                 <h3 class="section-title">Будем рады предоставить вам бесплатную консультацию по вашим индивидуальным
@@ -322,53 +344,75 @@
         <section class="project__related">
             <div class="container">
                 <h2>Похожие проекты</h2>
-                <div class="portfolio__grid">
-                    <a href="./html/project-svoboda.html" class="card">
-                        <div class="card__image"
-                            style="background-image: url('../img/portfolio/cover-yubileynaya.webp');">
-                            <div class="card__overlay">
-                                <h3 class="card__title2">Аптека пл.Свободы</h3>
-                                <p class="card__subtitle">
-                                    Категория: Пожарная сигнализация · Тип: Монтаж
-                                </p>
-                                <span class="btn btn--secondary portfolio-card__btn">
-                                    Подробнее
-                                </span>
-                            </div>
+
+                <div class="related__slider swiper js-related-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="./project-svoboda.html" class="card" aria-label="Аптека пл. Свободы — Подробнее">
+                                <div class="card__image"
+                                    style="background-image: url('../img/portfolio/cover-yubileynaya.webp');">
+                                    <div class="card__overlay">
+                                        <h3 class="card__title2">Аптека пл.Свободы</h3>
+                                        <p class="card__subtitle">Категория: Пожарная сигнализация · Тип: Монтаж</p>
+                                        <span class="btn btn--secondary portfolio-card__btn">Подробнее</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <!-- … ещё 2–3 карточки -->
-                    <a href="./html/project-svoboda.html" class="card">
-                        <div class="card__image"
-                            style="background-image: url('../img/portfolio/cover-yubileynaya.webp');">
-                            <div class="card__overlay">
-                                <h3 class="card__title2">Аптека пл.Свободы</h3>
-                                <p class="card__subtitle">
-                                    Категория: Пожарная сигнализация · Тип: Монтаж
-                                </p>
-                                <span class="btn btn--secondary portfolio-card__btn">
-                                    Подробнее
-                                </span>
-                            </div>
+
+                        <!-- Ещё слайды -->
+                        <div class="swiper-slide">
+                            <a href="./project-lyskovo-school.html" class="card" aria-label="Школа Лысково — Подробнее">
+                                <div class="card__image"
+                                    style="background-image: url('../img/portfolio/cover-shkola.webp');">
+                                    <div class="card__overlay">
+                                        <h3 class="card__title2">Школа Лысково</h3>
+                                        <p class="card__subtitle">Категория: Образование · Тип: Монтаж</p>
+                                        <span class="btn btn--secondary portfolio-card__btn">Подробнее</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <a href="./html/project-svoboda.html" class="card">
-                        <div class="card__image"
-                            style="background-image: url('../img/portfolio/cover-yubileynaya.webp');">
-                            <div class="card__overlay">
-                                <h3 class="card__title2">Аптека пл.Свободы</h3>
-                                <p class="card__subtitle">
-                                    Категория: Пожарная сигнализация · Тип: Монтаж
-                                </p>
-                                <span class="btn btn--secondary portfolio-card__btn">
-                                    Подробнее
-                                </span>
-                            </div>
+                        <div class="swiper-slide">
+                            <a href="./project-funik.html" class="card"
+                                aria-label="Нижегородский фуникулёр — подробнее">
+                                <div class="card__image"
+                                    style="background-image: url('../img/portfolio/cover-funikuler.webp');">
+                                    <div class="card__overlay">
+                                        <h3 class="card__title2">Нижегородский фуникулёр</h3>
+                                        <p class="card__subtitle">
+                                            Категория: Промышленность · Тип: Монтаж
+                                        </p>
+                                        <span class="btn btn--secondary portfolio-card__btn">Подробнее</span>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                        <div class="swiper-slide">
+                            <a href="./project-lyskovo-school.html" class="card" aria-label="Школа Лысково — Подробнее">
+                                <div class="card__image"
+                                    style="background-image: url('../img/portfolio/cover-shkola.webp');">
+                                    <div class="card__overlay">
+                                        <h3 class="card__title2">Школа Лысково</h3>
+                                        <p class="card__subtitle">Категория: Образование · Тип: Монтаж</p>
+                                        <span class="btn btn--secondary portfolio-card__btn">Подробнее</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Добавь 1–3 слайда по аналогии -->
+                    </div>
+
+                    <div class="slider-ui">
+                        <button class="swiper-button-prev related__prev" aria-label="Назад"></button>
+                        <div class="swiper-pagination related__pagination"></div>
+                        <button class="swiper-button-next related__next" aria-label="Вперёд"></button>
+                    </div>
                 </div>
             </div>
         </section>
+
     </main>
 
 
