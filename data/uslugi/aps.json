@@ -3,7 +3,7 @@
     "title": "Пожарная сигнализация — проектирование, монтаж и сервис",
     "subtitle": "Раннее обнаружение, сдача надзору, гарантия до 3 лет",
     "hero": {
-        "bg": "/img/uslugi/aps/hero.jpg"
+        "bg": "../img/uslugi/aps/hero.jpg"
     },
     "usp": [
         "Сертифицированные инженеры",
@@ -61,62 +61,62 @@
     "licenses": [
         {
             "name": "Лицензия МЧС",
-            "img": "/img/uslugi/aps/licenses/lic-mchs.jpg"
+            "img": "../img/uslugi/aps/licenses/lic-mchs.jpg"
         },
         {
             "name": "Лицензия ФСБ",
-            "img": "/img/uslugi/aps/licenses/lic-fsb.jpg"
+            "img": "../img/uslugi/aps/licenses/lic-fsb.jpg"
         },
         {
-            "name": "ISO 9001",
-            "img": "/img/uslugi/aps/licenses/lic-iso.jpg"
+            "name": "Лицензия ISO 9001",
+            "img": "../img/uslugi/aps/licenses/lic-iso.jpg"
         }
     ],
     "docs": [
         {
             "name": "Пример проекта",
-            "file": "/img/uslugi/aps/docs/proj-example-1.jpg",
+            "file": "../img/uslugi/aps/docs/proj-example-1.jpg",
             "preview": true
         },
         {
-            "name": "Паспорт изделия",
-            "file": "/img/uslugi/aps/docs/passport-izdeliya.pdf"
+            "name": "Паспорт объекта",
+            "file": "../img/uslugi/aps/docs/passport-izdeliya.pdf"
         }
     ],
     "cases": [
         {
             "title": "«Арсенал», Кремль, корп. 6, 4 560 м²",
             "meta": "Проект+монтаж, 2 месяца",
-            "cover": "/img/uslugi/aps/cases/case-01/cover.jpg",
+            "cover": "../img/uslugi/aps/cases/case-01/cover.jpg",
             "gallery": [
-                "/img/uslugi/aps/cases/case-01/01.jpg",
-                "/img/uslugi/aps/cases/case-01/02.jpg",
-                "/img/uslugi/aps/cases/case-01/03.jpg",
-                "/img/uslugi/aps/cases/case-01/04.jpg",
-                "/img/uslugi/aps/cases/case-01/05.jpg",
-                "/img/uslugi/aps/cases/case-01/06.jpg",
-                "/img/uslugi/aps/cases/case-01/07.jpg",
-                "/img/uslugi/aps/cases/case-01/08.jpg",
-                "/img/uslugi/aps/cases/case-01/09.jpg"
+                "../img/uslugi/aps/cases/case-01/01.jpg",
+                "../img/uslugi/aps/cases/case-01/02.jpg",
+                "../img/uslugi/aps/cases/case-01/03.jpg",
+                "../img/uslugi/aps/cases/case-01/04.jpg",
+                "../img/uslugi/aps/cases/case-01/05.jpg",
+                "../img/uslugi/aps/cases/case-01/06.jpg",
+                "../img/uslugi/aps/cases/case-01/07.jpg",
+                "../img/uslugi/aps/cases/case-01/08.jpg",
+                "../img/uslugi/aps/cases/case-01/09.jpg"
             ]
         },
         {
             "title": "Бургерная Салют, 83 м²",
             "meta": "АПС + СОУЭ, 1 месяц",
-            "cover": "/img/uslugi/aps/cases/case-02/cover.webp",
+            "cover": "../img/uslugi/aps/cases/case-02/cover.webp",
             "gallery": [
-                "/img/uslugi/aps/cases/case-02/01.webp",
-                "/img/uslugi/aps/cases/case-02/02.webp"
+                "../img/uslugi/aps/cases/case-02/01.webp",
+                "../img/uslugi/aps/cases/case-02/02.webp"
             ]
         },
         {
             "title": "Центробанк, ул. Б. Покровская, 2 625 м²",
             "meta": "АПС, 2 месяца",
-            "cover": "/img/uslugi/aps/cases/case-03/cover.webp",
+            "cover": "../img/uslugi/aps/cases/case-03/cover.webp",
             "gallery": [
-                "/img/uslugi/aps/cases/case-03/01.webp",
-                "/img/uslugi/aps/cases/case-03/02.webp",
-                "/img/uslugi/aps/cases/case-03/03.webp"
+                "../img/uslugi/aps/cases/case-03/01.webp",
+                "../img/uslugi/aps/cases/case-03/02.webp",
+                "../img/uslugi/aps/cases/case-03/03.webp"
             ]
         }
     ],
@@ -131,7 +131,7 @@
         }
     ],
     "areas": [
-        "Штирия, Австрия и соседние земли"
+        "Нижний Новгород, Нижегородская область"
     ],
     "warranty": "12–36 месяцев, регламент ТО — ежеквартально.",
     "seo": {
