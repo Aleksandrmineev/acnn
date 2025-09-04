@@ -17,7 +17,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Свайпер -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
@@ -118,16 +118,16 @@
       <div class="container">
         <h2 class="section-title">Наши услуги</h2>
         <div class="services__grid">
-          <div class="card" data-service="fire">
+          <a class="card" data-service="aps" href="uslugi/index.html?slug=aps"
+            aria-label="Пожарная сигнализация — подробнее">
             <div class="card__image fire-alarm">
               <div class="card__overlay">
                 <h3 class="card__title">Пожарная сигнализация</h3>
-                <p class="card__subtitle">
-                  Раннее обнаружение и безопасность
-                </p>
+                <p class="card__subtitle">Раннее обнаружение и безопасность</p>
               </div>
             </div>
-          </div>
+          </a>
+
           <div class="card" data-service="extinguish">
             <div class="card__image fire-extinguishing">
               <div class="card__overlay">
@@ -598,7 +598,7 @@
     <footer class="footer">
       <div class="container footer__inner">
         <div class="footer__copy">
-          © 2025 АС Монтаж. Все права защищены.
+          © <span id="year"></span> АС Монтаж. Все права защищены.
         </div>
 
         <nav class="footer__nav">

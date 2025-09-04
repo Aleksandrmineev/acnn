@@ -142,6 +142,29 @@
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
 }
 
+/* анимированная линия */
+.nav-desktop a:not(.btn){
+  position: relative;
+}
+
+.nav-desktop a:not(.btn)::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-2px;
+  width:100%; height:2px;
+  background: var(--clr-white);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .25s ease;
+}
+
+.nav-desktop a:not(.btn):hover::after,
+.nav-desktop a:not(.btn):focus-visible::after{
+  transform: scaleX(1);
+  height:2px; 
+}
+
+
 /* ========================== */
 /*         Burger Menu        */
 /* ========================== */

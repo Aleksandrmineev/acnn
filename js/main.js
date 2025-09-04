@@ -14,6 +14,9 @@ if (mm && mm.parentElement !== document.body) {
   document.body.appendChild(mm); // вытаскиваем из любых трансформированных родителей
 }
 
+// Динамический год в футере
+const y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+
 /* =========================
    ФОРМА
 ========================= */

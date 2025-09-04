@@ -1,0 +1,386 @@
+/* ---- Заголовки и отступы ---- */
+/* держим контент выше оверлея */
+.service-page .hero{ position: relative; 
+margin-bottom: 20px;}
+.service-page .hero .container{ position: relative; z-index: 1; }
+
+.service-page .hero::after{
+    /* интенсивность затемнения можно крутить переменной */
+    --hero-dim: .45;                  /* 0 — нет затемнения, 1 — чёрный */
+    content:"";
+    position:absolute; inset:0;
+    background: rgba(0,0,0,var(--hero-dim));
+    pointer-events:none;
+    z-index: 0;
+  }
+
+/* сам заголовок — мягкая тень, без «грязи» */
+.service-page .hero h1{
+  color: var(--clr-white);
+  font-weight: 700;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.35),   /* лёгкое свечение сверху (на светлом фоне) */
+    0 4px 18px rgba(0,0,0,.20);      /* мягкая тень вниз для читаемости */
+    padding-bottom: 40px;
+}
+
+/* подзаголовок тоже чуть «поднимем» */
+.service-page .hero p {
+  color: var(--clr-white);
+  text-shadow: 0 2px 10px rgba(0,0,0,.12);
+  padding-bottom: 40px;
+}
+
+.service-page h2{ 
+    margin: 0 0 12px; 
+    font-size: var(--font-size-card-title);
+    line-height: var(--line-height-100);
+    color: var(--clr-card-title);
+    margin: 0 0 16px;
+}
+
+/* Hero — аккуратнее подпись и чипы */
+  .service-page .hero__usp .card{
+    color: var(--clr-white);
+    padding: 8px 12px;
+    font-size: var(--font-size-sm);
+  }
+
+/* ---- Ссылки на странице услуги (чистые, без тотального подчеркивания) ---- */
+
+/* базово убираем обычное подчёркивание */
+.service-page a{ text-decoration: none; }
+
+/* анимированная линия */
+.service-page a:not(.btn){
+  position: relative;
+}
+
+.service-page a:not(.btn)::after{
+  content:"";
+  position:absolute;
+  left:0; bottom:-2px;
+  width:100%; height:2px;
+  background: var(--clr-white);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .25s ease;
+}
+
+.service-page a:not(.btn):hover::after,
+.service-page a:not(.btn):focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* на тёмном фоне героя можно сделать чуть толще */
+.service-page .hero a:not(.btn)::after{ height:3px; }
+
+/* ===== Карточки для .grid--3 (современно и адаптивно) ===== */
+.service-page .grid--3{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--gap);
+    margin-bottom: 40px;
+  }
+  
+  /* Базовая карточка */
+  .service-page .grid--3 .card{
+    display:flex;
+    flex-direction:column;
+    gap: 10px;
+    padding: 18px 20px;
+    background: var(--clr-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    border: 1px solid rgba(0,0,0,.05);
+  }
+  
+  /* Заголовок/текст */
+  .service-page .grid--3 .card__title{
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+    color: var(--clr-card-title);
+    line-height: var(--line-height-100);
+    text-shadow: none;
+  }
+  .service-page .grid--3 .card__text{
+    color: var(--clr-text-light);
+    font-size: var(--font-size-card-item);
+    line-height: var(--line-height-card-item);
+  }
+  
+  /* Иконка-кружок */
+  .service-page .grid--3 .card__icon{
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display:grid; place-items:center;
+    background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+    color: var(--clr-white);
+    box-shadow: 0 6px 16px rgba(0,91,255,.25);
+    flex: 0 0 auto;
+  }
+  
+  /* Ховер/фокус (для кликабельных карточек) */
+  .service-page .grid--3 .card--clickable{
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .service-page .grid--3 .card--clickable:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    border-color: rgba(0,91,255,.18);
+  }
+  .service-page .grid--3 .card--clickable:focus-visible{
+    outline: 3px solid rgba(0,91,255,.35);
+    outline-offset: 2px;
+  }
+  
+  /* Подвал карточки (кнопка/ссылка) */
+  .service-page .grid--3 .card__footer{
+    margin-top:auto;
+    display:flex; align-items:center; gap:10px;
+  }
+  .service-page .grid--3 .card__link{
+    position: relative;
+    display:inline-flex; align-items:center; gap:8px;
+    font-size: var(--font-size-base);
+    color: var(--clr-accent);
+    text-decoration: none;
+  }
+  .service-page .grid--3 .card__link::after{
+    content:"→";
+    transition: transform .2s ease;
+  }
+  .service-page .grid--3 .card--clickable:hover .card__link::after{
+    transform: translateX(2px);
+  }
+  
+  /* Картинка сверху (если нужна) */
+  .service-page .grid--3 .card__media{
+    width:100%;
+    aspect-ratio: 16/9;
+    border-radius: calc(var(--radius) - 4px);
+    object-fit: cover;
+    background: var(--clr-gray);
+  }
+  
+  /* Адаптив: на узких — чуть больше отступы внутри карточки */
+  @media (max-width: 768px){
+    .service-page .grid--3{ gap: calc(var(--gap) * .9); }
+    .service-page .grid--3 .card{ padding: 16px; }
+  }
+  
+  /* Уважение prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce){
+    .service-page .grid--3 .card{ transition: none; }
+    .service-page .grid--3 .card--clickable:hover{ transform:none; }
+  }
+  
+/* ---- Карточки "Что входит" ---- */
+.service-page #features .card{ display:flex; flex-direction:column; gap:6px; }
+.service-page #features .card p{ color: var(--clr-text-light); font-size: var(--font-size-card-item); }
+
+/* Планы */
+.service-page #packages .card{
+    display:flex; flex-direction:column; gap:10px;
+    position:relative;
+  }
+  .service-page .plan__head{ display:flex; align-items:center; justify-content:space-between; }
+  .service-page .plan__title{ font-weight:700; color:var(--clr-card-title); }
+  .service-page .plan__price{
+    background: var(--clr-accent);
+    color: var(--clr-white);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: var(--font-size-sm);
+    box-shadow: 0 4px 12px rgba(0,91,255,.18);
+  }
+  .service-page .plan__list{ margin: 4px 0 0 0; padding:0; list-style:none; display:grid; gap:6px; }
+  .service-page .plan__list li{
+    display:flex; align-items:flex-start; gap:8px;
+    font-size: var(--font-size-card-item); color: var(--clr-text);
+  }
+  .service-page .plan__list li::before{
+    content:"";
+    width:16px; height:16px; margin-top:2px;
+    border-radius:50%;
+    background: radial-gradient(circle at 50% 50%, var(--clr-accent) 55%, transparent 56%) no-repeat;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,.08);
+  }
+  .service-page #packages .card .btn{ width:100%; margin-top:auto; }
+
+
+/* ---- Нормативы (чипы уже есть) — чуть меньше и ровнее межстрочный ---- */
+.service-page #standards .card > *{
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-100);
+}
+
+/* ---- Кейсы ---- */
+.service-page #cases figure.card{ overflow: hidden;padding: 12px;}
+.service-page #cases img{
+    margin-bottom: 20px;
+  }
+.service-page #cases .swiper-button-prev,
+.service-page #cases .swiper-button-next{
+  width: 38px; height: 38px; border-radius: var(--btn-radius);
+  background: var(--clr-accent); color: var(--clr-white);
+}
+.service-page #cases .swiper-button-prev:after,
+.service-page #cases .swiper-button-next:after{ font-size: 16px; }
+
+/* Swiper — стрелки и пагинация */
+.service-page #cases .swiper{ padding: 8px 0 38px; }
+.service-page #cases .swiper-button-prev,
+.service-page #cases .swiper-button-next{
+  width: 40px; height: 40px;
+  border-radius: var(--btn-radius);
+  background: var(--clr-accent);
+  color: var(--clr-white);
+  box-shadow: 0 6px 16px rgba(0,91,255,.25);
+}
+.service-page #cases .swiper-button-prev:after,
+.service-page #cases .swiper-button-next:after{ font-size:16px; }
+.service-page #cases .swiper-pagination-bullet{
+  width:8px; height:8px; opacity:.4; background: var(--clr-accent);
+}
+.service-page #cases .swiper-pagination-bullet-active{ opacity:1; }
+
+/* Кнопка */
+/* Кнопка в карточке кейса */
+.service-page #cases .btn--ghost{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: var(--btn-padding-block) var(--btn-padding-inline);
+    border:1px solid rgba(0,0,0,.12);
+    border-radius: var(--btn-radius);
+    background: var(--clr-white);
+    color: var(--clr-accent);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;             /* на всякий случай */
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    margin: 20px auto;
+  }
+  
+  /* Иконка камеры через CSS-mask (подхватывает currentColor) */
+  .service-page #cases .btn--ghost::before{
+    content:"";
+    width:16px; height:16px; flex:0 0 16px;
+    background: currentColor;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
+            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
+  }
+  
+  /* Ховер/фокус */
+  .service-page #cases .btn--ghost:hover,
+  .service-page #cases .btn--ghost:focus-visible{
+    background: var(--clr-accent);
+    color: var(--clr-white);
+    border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0,91,255,.25);
+  }
+  
+
+/* ---- Лицензии и документы ---- */
+/* ===== Лицензии / Сертификаты ===== */
+.service-page #licenses { margin-bottom: 40px; }
+
+.service-page #licenses .grid--4{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--gap);
+}
+
+/* Карточка */
+.service-page #licenses .card{
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 16px;
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  overflow: hidden;
+}
+
+/* Враппер превью с фикс. соотношением сторон */
+.service-page #licenses .thumb{
+  width: 100%;
+  aspect-ratio: 3 / 4;               /* близко к А4 в портретной ориентации */
+  background: var(--clr-light-bg);
+  border-radius: calc(var(--radius) - 4px);
+  display: grid; place-items: center;
+  overflow: hidden; position: relative;
+}
+
+/* Изображение: по умолчанию НЕ режем (читаемость важнее) */
+.service-page #licenses img{
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Подпись */
+.service-page #licenses .card p{
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--clr-text-light);
+  margin: 4px 0 0;
+}
+
+/* Ховер: лёгкое приподнятие и индикатор кликабельности */
+.service-page #licenses .card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  border-color: rgba(0,91,255,.18);
+}
+.service-page #licenses .thumb::after{
+  content:"";
+  position:absolute; right:8px; bottom:8px; width:18px; height:18px;
+  background: currentColor; color: var(--clr-accent); opacity:.85;
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
+  transition: transform .2s ease;
+}
+.service-page #licenses .card:hover .thumb::after{ transform: scale(1.05); }
+
+/* Адаптив */
+@media (max-width: 480px){
+  .service-page #licenses .grid--4{
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .service-page #licenses .thumb{ aspect-ratio: 2 / 3; }
+}
+
+/* === Режим "кропать как карточки" (по желанию) ===
+     Добавь класс .is-cover на #licenses, если нужно обрезать изображение */
+.service-page #licenses.is-cover img{ object-fit: cover; }
+.service-page #licenses.is-cover .thumb{ aspect-ratio: 4 / 5; }
+
+
+.service-page #docs .doc-list{ list-style: none; padding: 0; margin: 0; display:grid; gap:8px; }
+.service-page #docs .doc-list li a{ display:inline-flex; align-items:center; gap:8px; }
+.service-page #docs .doc-list li a::before{
+  content:"📄"; font-size: 16px; opacity:.7;
+}
+
+/* ---- FAQ ---- */
+.service-page .faq details + details{ margin-top: 10px; }
+.service-page .faq summary{ position:relative; padding-right: 24px; }
+.service-page .faq summary::after{
+  content:""; position:absolute; right:6px; top:50%; width:8px; height:8px;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform: translateY(-50%) rotate(-45deg); transition: transform .2s ease;
+  opacity:.7;
+}
+.service-page .faq details[open] summary::after{ transform: translateY(-50%) rotate(45deg); }
+
+/* ---- Форма ---- */
+.service-page #form form input,
+.service-page #form form textarea{
+  border:1px solid #e4e7ed; border-radius: var(--radius);
+  font-size: var(--font-size-base);
+}

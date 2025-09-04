@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- SEO, которые мы меняем из JSON -->
+    <title id="seo-title"></title>
+    <meta id="seo-desc" name="description" content="">
+    <link id="seo-canonical" rel="canonical" href="">
+    <meta property="og:title" id="og-title" content="">
+    <meta property="og:description" id="og-desc" content="">
+    <meta property="og:image" id="og-image" content="">
+
+    <!-- сюда докинем общую head-вставку -->
+    <!-- В head оставь это вместо document.write -->
+    <script>
+        (async () => {
+            try {
+                const html = await (await fetch('../partials/head-extra.html')).text();
+                const tpl = document.createElement('template');
+                tpl.innerHTML = html.trim();
+                document.head.append(...tpl.content.childNodes); // просто добавляем узлы в <head>
+            } catch (e) {
+                console.error('head-extra load error', e);
+            }
+        })();
+    </script>
+
+</head>
+
+<body>
+    <div class="wrapper service-page">
+        <!-- ШАПКА -->
+        <div data-include="../partials/header.html"></div>
+        <header class="hero" id="hero">
+            <div class="container">
+                <h1 id="title"></h1>
+
+                <p id="subtitle"></p>
+                <ul class="hero__usp" id="usp"></ul>
+            </div>
+        </header>
+
+        <!-- Дальше — твои блоки услуги (Hero/Features/… ) -->
+
+        <section class="container" id="features"></section>
+
+        <section class="container" id="packages"></section>
+
+        <section class="container" id="standards"></section>
+
+        <!-- Слайдер кейсов -->
+        <section class="container" id="cases">
+            <h2>Наши проекты</h2>
+            <div class="swiper cases-swiper">
+                <div class="swiper-wrapper" id="cases-wrapper"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <!-- Лицензии / Документы -->
+        <section class="container" id="licenses"></section>
+        <section class="container" id="docs"></section>
+
+        <section class="container faq" id="faq"></section>
+        <section class="container" id="geo"></section>
+        <section class="container" id="warranty"></section>
+
+        <section class="container" id="form">
+            <h2>Оставить заявку</h2>
+            <form><!-- твоя форма --></form>
+        </section>
+
+
+
+        <!-- ПОДВАЛ -->
+        <div data-include="../partials/footer.html"></div>
+    </div>
+
+    <button class="to-top" aria-label="Наверх">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+    <!-- Скрипт «инклюдов» + твой основной js -->
+    <script>
+        // простой include для статического сайта
+        window.includesReady = (async () => {
+            const nodes = Array.from(document.querySelectorAll('[data-include]'));
+            await Promise.all(nodes.map(async (el) => {
+                const url = el.getAttribute('data-include');
+                const html = await (await fetch(url)).text();
+                el.outerHTML = html;
+            }));
+        })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/service-page.js" defer></script>
+    <script id="schema" type="application/ld+json"></script>
+</body>
+
+</html>
