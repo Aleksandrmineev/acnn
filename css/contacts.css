@@ -124,23 +124,24 @@
   flex: 0 0 16px;
 }
 
+@media (max-width: 768px) {
+  .team-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: flex-start;
+    gap: 0;
+    list-style: none;
+  }
+}
+
 @media (max-width: 420px) {
   .person {
   grid-template-columns: 1fr;
   }
 
-  .team-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    align-items: start;
-    gap: 0;
-    list-style: none;
-  }
-
   .person__avatar {
-    display: none;
-        }
+    display: none; }
 
   .person * {
     grid-template-columns: 1fr;

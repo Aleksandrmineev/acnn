@@ -43,8 +43,7 @@
 }
 
 .service-page .hero::after{
-    /* интенсивность затемнения можно крутить переменной */
-    --hero-dim: .45;                  /* 0 — нет затемнения, 1 — чёрный */
+    --hero-dim: .45;
     content:"";
     position:absolute; inset:0;
     background: rgba(0,0,0,var(--hero-dim));
