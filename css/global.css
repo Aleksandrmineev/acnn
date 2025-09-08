@@ -221,7 +221,7 @@ li {
   }
 
   .container {
-    padding: 0 15px;
+    padding: 0 5px;
   }
 }
 
@@ -249,7 +249,8 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 300px;
+  width: 100%;
+  max-width: 400px;
 }
 
 input,

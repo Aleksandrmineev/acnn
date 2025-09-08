@@ -44,10 +44,10 @@
 /* Список людей */
 .team-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: var(--gap);
   list-style: none;
-  margin: 0 20px;
+  /* margin: 0 20px; */
   background-color: var(--clr-light-bg);
   border: 2px solid transparent;
   box-shadow: 0 4px 12px rgba(0, 91, 255, 0.2);
@@ -125,14 +125,22 @@
 }
 
 @media (max-width: 420px) {
+  .person {
+  grid-template-columns: 1fr;
+  }
+
   .team-list {
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: start;
-    gap: 18px;
+    gap: 0;
     list-style: none;
   }
+
+  .person__avatar {
+    display: none;
+        }
 
   .person * {
     grid-template-columns: 1fr;

@@ -37,13 +37,18 @@
         <header class="hero" id="hero">
             <div class="container">
                 <h1 id="title"></h1>
-
                 <p id="subtitle"></p>
+
+                <div class="hero__actions">
+                    <a id="cta-primary" class="btn btn--primary" href="#form">Получить смету</a>
+                    <a id="cta-secondary" class="btn btn--secondary" href="tel:+78312288022">Позвонить</a>
+                </div>
+
                 <ul class="hero__usp" id="usp"></ul>
             </div>
         </header>
 
-        <!-- Дальше — твои блоки услуги (Hero/Features/… ) -->
+
 
         <section class="container" id="features"></section>
 
@@ -195,7 +200,7 @@
                     </div>
 
                     <!-- Правая колонка: форма -->
-                    <form class="contacts__form">
+                    <form id="id=" leadForm" class="contacts__form">
                         <input type="text" name="name" placeholder="Ваше имя" />
                         <input type="tel" name="phone" placeholder="Телефон или email" />
                         <textarea name="message" rows="7" placeholder="Ваш вопрос"></textarea>
@@ -212,12 +217,12 @@
         <div data-include="../partials/footer.html"></div>
     </div>
 
-    <button class="to-top" aria-label="Наверх">
+    <!-- <button class="to-top" aria-label="Наверх">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
-    </button>
+    </button> -->
     <!-- Скрипт «инклюдов» + твой основной js -->
     <script>
         // простой include для статического сайта

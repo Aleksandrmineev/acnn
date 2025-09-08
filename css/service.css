@@ -1,9 +1,46 @@
 /* ---- Заголовки и отступы ---- */
 
 /* держим контент выше оверлея */
-.service-page .hero{ position: relative; 
-margin-bottom: 20px;}
-.service-page .hero .container{ position: relative; z-index: 1; }
+/* ===== Hero ===== */
+.service-page .hero{
+  position: relative;
+  padding: clamp(72px, 12vw, 120px) 0 clamp(48px, 8vw, 72px);
+  background-size: cover;
+  background-position: center;
+  color: var(--clr-white);
+}
+.service-page .hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(180deg,  text-shadow: 0 2px 24px rgba(0,0,0,.55), 0 1px 0 rgba(0,0,0,.35));
+}
+.service-page .hero .container{ position:relative; z-index:1; text-align:center; }
+.service-page .hero h1{ color: var(--clr-white); text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+.service-page .hero p#subtitle{ margin-top: 8px; color: rgba(255,255,255,.92); text-shadow: 0 1px 14px rgba(0,0,0,.45);}
+
+.service-page .hero .hero__actions{
+  margin: 18px 0 10px;
+  display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+}
+.service-page .hero .btn--secondary{
+  background: transparent; color: var(--clr-white);
+  border-color: rgba(255,255,255,.85);
+}
+.service-page .hero .btn--secondary:hover{
+  background: rgba(255,255,255,.1);
+}
+
+/* чипы преимуществ */
+.service-page .hero .hero__usp{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 10px; list-style: none; padding: 0; margin: 16px auto 0;
+  max-width: 920px;
+}
+.service-page .hero .hero__usp .card{
+  background: rgba(255,255,255,.94); color: var(--clr-text);
+  border-radius: 999px; box-shadow: var(--shadow-card); padding: 10px 14px;
+}
 
 .service-page .hero::after{
     /* интенсивность затемнения можно крутить переменной */
@@ -230,7 +267,7 @@ margin-bottom: 20px;}
 /* ===== Карточки для .grid--3 (современно и адаптивно) ===== */
 .service-page .grid--3{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--gap);
     margin-bottom: 40px;
   }
@@ -374,6 +411,12 @@ margin-bottom: 20px;}
 .service-page #cases figure.card{ overflow: hidden;padding: 12px;}
 .service-page #cases img{
     margin-bottom: 20px;
+  }
+
+  @media (max-width: 520px){
+    .service-page #cases img{
+      margin-bottom: 50px;
+    }
   }
 .service-page #cases .swiper-button-prev,
 .service-page #cases .swiper-button-next{
@@ -786,6 +829,17 @@ margin-bottom: 20px;}
 /* если где-то постер останется, на всякий случай скрываем в состоянии проигрывания */
 .service-page #video .video-inline.is-playing .video-thumb{ display:none; }
 
+.service-page #video .video-duration{
+  position:absolute; right:8px; top:8px;
+  padding:2px 6px; border-radius:6px;
+  background:rgba(0,0,0,.65); color:#fff;
+  font-size:12px; line-height:1;
+  opacity:0; transform:translateY(-2px);
+  transition:opacity .2s ease, transform .2s ease;
+}
+.service-page #video .video-duration.is-ready{ opacity:1; transform:translateY(0); }
+.service-page #video .video-inline.is-playing .video-duration{ opacity:.9; }
+
 
 
 
@@ -796,4 +850,129 @@ margin-bottom: 20px;}
   font-size: var(--font-size-base);
 }
 
+/* ===== Form: proof line ===== */
+.service-page #form .form-proof{
+  margin: 8px 0 12px;
+  color: var(--clr-text-light);
+  font-size: var(--font-size-sm);
+}
 
+/* ===== Sticky CTA (мобилка) ===== */
+/* ===== Sticky CTA: FAB + панель ===== */
+.sticky-cta{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+  z-index: 1000;
+  display: none;                /* только на мобилке включаем через .is-active */
+}
+.sticky-cta.is-active{ display: block; }
+.sticky-cta.is-hidden{ opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+
+/* Кнопка-FAB (круглая, пульс) */
+.sticky-cta__fab{
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  box-shadow: 0 10px 28px rgba(0,91,255,.28);
+  cursor: pointer;
+  display: grid; place-items: center;
+  position: relative;
+  animation: ctaPulse 2.2s ease-in-out infinite;
+}
+.sticky-cta__fab:hover{ background: var(--btn-hover-bg); }
+@keyframes ctaPulse{
+  0%, 100% { box-shadow: 0 10px 28px rgba(0,91,255,.28); }
+  50% { box-shadow: 0 14px 36px rgba(0,91,255,.40); }
+}
+
+/* Панель действий (раскрывается над FAB) */
+.sticky-cta__panel{
+  position: absolute;
+  left: 50%; bottom: 64px; transform: translateX(-50%) translateY(6px);
+  width: min(640px, 94vw);
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
+  padding: 8px;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 14px;
+  box-shadow: 0 16px 38px rgba(0,0,0,.18);
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.sticky-cta.is-expanded .sticky-cta__panel{
+  opacity: 1; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Кнопки внутри панели */
+.sticky-cta__btn{
+  display:flex; align-items:center; justify-content:center;
+  padding: 10px 12px;
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  font-size: var(--btn-font-size);
+  color: var(--clr-text);
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.12);
+  box-shadow: var(--shadow-card);
+}
+.sticky-cta__btn--primary{
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border-color: transparent;
+}
+.sticky-cta__btn--primary:hover{ background: var(--btn-hover-bg); }
+
+/* Узкие экраны — кнопки в две строки, если нужно */
+@media (max-width: 420px){
+  .sticky-cta__panel{
+    grid-template-columns: 1fr 1fr;
+    width: min(520px, 94vw);
+  }
+}
+
+
+.sticky-cta__btn{
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 10px 12px;
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  font-size: var(--btn-font-size);
+  line-height: 1.2;
+  border: 1px solid rgba(0,0,0,.12);
+  background: var(--clr-white);
+  color: var(--clr-text);
+  box-shadow: var(--shadow-card);
+}
+.sticky-cta__btn--primary{
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border-color: transparent;
+}
+.sticky-cta__btn--primary:hover{ background: var(--btn-hover-bg); }
+
+
+/* ===== Локальная кнопка "Наверх" (страница услуг) ===== */
+/* локальная "Наверх" — поверх всего и правее FAB */
+.to-top-local{
+  position: fixed;
+  right: 20px;
+  bottom: calc(env(safe-area-inset-bottom) + 20px);
+  width: 44px; height: 44px;
+  display:flex; align-items:center; justify-content:center;
+  border: none; border-radius: var(--btn-radius);
+  background: var(--btn-bg); color: var(--btn-color);
+  cursor:pointer; z-index: 1100;        /* > sticky-cta (1000) */
+  opacity:0; pointer-events:none;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  transition: opacity .3s ease, background-color .2s ease, transform .15s ease;
+}
+.to-top-local.show{ opacity:1; pointer-events:auto; }
+.to-top-local:hover{ background: var(--btn-hover-bg); transform: translateY(-1px); }
+
+.to-top-local svg{ width: 20px; height: 20px; }
