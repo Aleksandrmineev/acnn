@@ -601,18 +601,18 @@
     bar.appendChild(fab);
     document.body.appendChild(bar);
 
-    // показать только на мобилке
+    // раскрытие/сворачивание (function declarations)
+    function expand() { bar.classList.add('is-expanded'); panel.hidden = false; fab.setAttribute('aria-expanded', 'true'); }
+    function collapse() { bar.classList.remove('is-expanded'); panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); }
+
+    // показать только на мобилке — можно оставить в текущем месте
     const mq = window.matchMedia('(max-width: 768px)');
     const applyMQ = () => {
       bar.classList.toggle('is-active', mq.matches);
-      if (!mq.matches) collapse(); // на десктопе сворачиваем
+      if (!mq.matches) collapse();
     };
     applyMQ();
     mq.addEventListener('change', applyMQ);
-
-    // раскрытие/сворачивание
-    const expand = () => { bar.classList.add('is-expanded'); panel.hidden = false; fab.setAttribute('aria-expanded', 'true'); };
-    const collapse = () => { bar.classList.remove('is-expanded'); panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); };
 
     fab.addEventListener('click', (e) => {
       e.stopPropagation();

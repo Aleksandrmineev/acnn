@@ -3,7 +3,7 @@
     "title": "Пожарная сигнализация — проектирование, монтаж и сервис",
     "subtitle": "Раннее обнаружение, сдача надзору, гарантия до 3 лет",
     "hero": {
-        "bg": "../img/uslugi/aps/hero.jpg"
+        "bg": "../img/uslugi/aps/hero.webp"
     },
     "usp": [
         "Сертифицированные инженеры",
@@ -83,14 +83,6 @@
         "EN 54 (EU/AT)"
     ],
     "licenses": [
-        {
-            "name": "Лицензия на осуществление деятельности от 2013 г. Стр. 1",
-            "img": "../img/uslugi/aps/licenses/licence1.jpg"
-        },
-        {
-            "name": "Лицензия на осуществление деятельности от 2013 г. Стр. 2",
-            "img": "../img/uslugi/aps/licenses/licence2.jpg"
-        },
         {
             "name": "Лицензия на осуществление деятельности от 2009 г. Стр. 1",
             "img": "../img/uslugi/aps/licenses/licence3.jpg"
