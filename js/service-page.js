@@ -34,35 +34,85 @@
   $('subtitle').textContent = data.subtitle || '';
   $('usp').innerHTML = (data.usp || []).map(i => `<li class="card">${i}</li>`).join('');
 
-  // Features
-  // Features (красивые карточки с иконками и кликом при наличии href)
+  // ---------- Steps / Timeline ----------
+  const MAX_STEPS_VISIBLE = 4;
+
   const pickIcon = (t = "") => {
-    const s = t.toLowerCase();
+    const s = (t || "").toLowerCase();
     if (s.includes("проект")) return "📐";
     if (s.includes("поставка")) return "📦";
     if (s.includes("монтаж")) return "🛠";
     if (s.includes("пнр") || s.includes("настрой")) return "⚙️";
     if (s.includes("сдача") || s.includes("док")) return "🧾";
-    if (s.includes("сервис") || s.includes("то")) return "🔧";
+    if (s.includes("договор") || s.includes("оплата")) return "💳";
+    if (s.includes("выезд") || s.includes("объект")) return "📍";
     return "✅";
   };
 
-  features.innerHTML = `
-  <h2>Что входит</h2>
-  <div class="grid grid--3">
-    ${(data.features || []).map(f => {
-    const icon = f.icon || pickIcon(f.title);
-    const inner = `
-        <div class="card__icon" aria-hidden="true">${icon}</div>
-        <h3 class="card__title">${f.title || ""}</h3>
-        ${f.desc ? `<p class="card__text">${f.desc}</p>` : ""}
-        ${f.href ? `<div class="card__footer"><span class="card__link">Подробнее</span></div>` : ""}
-      `;
-    return f.href
-      ? `<a class="card card--clickable" href="${f.href}">${inner}</a>`
-      : `<div class="card">${inner}</div>`;
-  }).join("")}
-  </div>`;
+  function renderSteps(items = []) {
+    const hidden = Math.max(items.length - MAX_STEPS_VISIBLE, 0);
+
+    features.innerHTML = `
+    <h2>Что выполняется поэтапно</h2>
+    <ol class="steps" id="steps">
+      ${items.map((f, i) => `
+        <li class="step ${i >= MAX_STEPS_VISIBLE ? 'is-hidden' : ''}" data-open="false">
+          <div class="step__num" aria-hidden="true"></div>
+          <button class="step__q" type="button" aria-expanded="false" aria-controls="step-a-${i}" id="step-q-${i}">
+            <span class="step__icon" aria-hidden="true">${f.icon || pickIcon(f.title)}</span>
+            <span class="step__title">${f.title || ""}</span>
+          </button>
+          <div class="step__a" id="step-a-${i}" role="region" aria-labelledby="step-q-${i}" style="height:0">
+            <div class="step__a-inner">${f.desc || ""}</div>
+          </div>
+        </li>
+      `).join('')}
+    </ol>
+    ${hidden ? `<div class="steps-more"><button class="btn btn--ghost" id="steps-more-btn">Показать ещё ${hidden}</button></div>` : ''}
+  `;
+
+    const toggle = (item) => {
+      const btn = item.querySelector('.step__q');
+      const ans = item.querySelector('.step__a');
+      const open = item.dataset.open === 'true';
+
+      if (open) {
+        ans.style.height = ans.scrollHeight + 'px';
+        void ans.offsetHeight;
+        ans.style.height = '0';
+        item.dataset.open = 'false';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        ans.style.height = ans.scrollHeight + 'px';
+        const onEnd = () => { ans.style.height = 'auto'; ans.removeEventListener('transitionend', onEnd); };
+        ans.addEventListener('transitionend', onEnd);
+        item.dataset.open = 'true';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    // клики/клавиатура
+    document.querySelectorAll('.step .step__q').forEach(btn => {
+      const item = btn.closest('.step');
+      btn.addEventListener('click', () => toggle(item));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && item.dataset.open === 'true') toggle(item);
+      });
+    });
+
+    // Показать скрытые
+    const moreBtn = document.getElementById('steps-more-btn');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', () => {
+        document.querySelectorAll('.step.is-hidden').forEach(el => el.classList.remove('is-hidden'));
+        moreBtn.parentElement.remove();
+      });
+    }
+  }
+
+  // вызов после загрузки JSON:
+  renderSteps(data.features || []);
+
 
 
   // Packages
@@ -127,55 +177,299 @@
     lb.on('open', () => links.slice(1).forEach(x => lb.insertSlide(x)));
   });
 
-  // Licenses
+  // Licenses → Swiper + Glightbox
   $('licenses').innerHTML = (data.licenses || []).length ? `
-      <h2>Лицензии и сертификаты</h2>
-      <div class="grid grid--4">
-        ${data.licenses.map(l => `
-          <a class="card" href="${l.img}" data-gallery="lic">
-            <img src="${l.img}" alt="${l.name}" loading="lazy" style="width:100%;border-radius:12px">
+  <h2>Лицензии и сертификаты</h2>
+  <div class="swiper licenses-swiper">
+    <div class="swiper-wrapper">
+      ${(data.licenses || []).map(l => `
+        <div class="swiper-slide">
+          <a class="card" href="${l.img}" data-gallery="lic" data-type="image">
+            <div class="thumb">
+              <img src="${l.img}" alt="${l.name}" loading="lazy">
+            </div>
             <p>${l.name}</p>
-          </a>`).join('')}
-      </div>` : '';
-  if (document.querySelector('#licenses a[data-gallery="lic"]')) GLightbox({ selector: '#licenses a[data-gallery="lic"]' });
+          </a>
+        </div>
+      `).join('')}
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+  </div>` : '';
+
+  // Swiper init (адаптив)
+  if (document.querySelector('.licenses-swiper')) {
+    new Swiper('.licenses-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      breakpoints: {
+        480: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+        1024: { slidesPerView: 4 }
+      },
+      navigation: { nextEl: '.licenses-swiper .swiper-button-next', prevEl: '.licenses-swiper .swiper-button-prev' },
+      pagination: { el: '.licenses-swiper .swiper-pagination', clickable: true },
+      watchOverflow: true
+    });
+
+    // Лайтбокс на изображения
+    GLightbox({ selector: '#licenses a[data-gallery="lic"]' });
+  }
+
 
   // Docs
+  // Docs: карточки с типом файла, кнопками и lightbox для изображений
+  const extOf = (path = "") => (path.split(".").pop() || "").toLowerCase();
+  const typeOf = (ext) => {
+    if (/^(png|jpe?g|webp|avif|gif|svg)$/.test(ext)) return "img";
+    if (/^pdf$/.test(ext)) return "pdf";
+    if (/^(docx?|rtf)$/.test(ext)) return "doc";
+    if (/^(xlsx?|csv)$/.test(ext)) return "xls";
+    if (/^(pptx?)$/.test(ext)) return "ppt";
+    if (/^(zip|rar|7z)$/.test(ext)) return "zip";
+    return "file";
+  };
+
   $('docs').innerHTML = (data.docs || []).length ? `
-      <h2>Документы</h2>
-      <ul class="doc-list">
-        ${data.docs.map(d => {
-    const isImg = d.preview === true || /\.(png|jpe?g|webp|avif)$/i.test(d.file);
-    return isImg
-      ? `<li><a href="${d.file}" data-gallery="docs">${d.name}</a></li>`
-      : `<li><a href="${d.file}" target="_blank" rel="noopener">${d.name}</a></li>`;
+  <h2>Документы</h2>
+  <ul class="doc-grid">
+    ${(data.docs || []).map(d => {
+    const ext = extOf(d.file);
+    const t = typeOf(ext);
+    const isImg = t === 'img' || d.preview === true;
+    const metaBits = [t.toUpperCase(), d.size, d.updated].filter(Boolean).join(' · ');
+    const mainAttrs = isImg
+      ? `href="${d.file}" class="doc-link glightbox" data-gallery="docs" data-type="image"`
+      : `href="${d.file}" class="doc-link" target="_blank" rel="noopener"`;
+    const openAttrs = isImg
+      ? `href="${d.file}" class="btn btn--primary glightbox" data-gallery="docs" data-type="image"`
+      : `href="${d.file}" class="btn btn--primary" target="_blank" rel="noopener"`;
+    return `
+        <li class="doc-card">
+          <a ${mainAttrs} aria-label="${d.name}">
+            <span class="doc-icon doc-icon--${t}" aria-hidden="true"></span>
+            <span class="doc-text">
+              <span class="doc-title">${d.name}</span>
+              <span class="doc-meta">${metaBits}</span>
+            </span>
+          </a>
+          <div class="doc-actions">
+            <a ${openAttrs}>Открыть</a>
+            <a href="${d.file}" class="btn btn--ghost doc-download" download>Скачать</a>
+          </div>
+        </li>`;
   }).join('')}
-      </ul>` : '';
-  if (document.querySelector('#docs a[data-gallery="docs"]')) GLightbox({ selector: '#docs a[data-gallery="docs"]' });
+  </ul>` : '';
+
+  // Lightbox только для изображений
+  if (document.querySelector('#docs .glightbox')) {
+    GLightbox({ selector: '#docs .glightbox' });
+  }
+
 
   // FAQ / GEO / Warranty
-  $('faq').innerHTML = (data.faq || []).length
-    ? `<h2>Частые вопросы</h2>${data.faq.map(f => `<details><summary>${f.q}</summary><div>${f.a}</div></details>`).join('')}` : '';
-  $('geo').innerHTML = (data.areas || []).length ? `<h2>География работ</h2><div class="card">${data.areas.join(', ')}</div>` : '';
-  $('warranty').innerHTML = data.warranty ? `<h2>Гарантия и сервис</h2><div class="card">${data.warranty}</div>` : '';
+  // ===== FAQ (современный аккордеон на div, с анимацией) =====
+  const MAX_FAQ_VISIBLE = 6; // сколько показывать сразу (остальные — по кнопке)
 
-  // Schema.org
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": data.title,
-    "description": data.seo?.description || data.subtitle,
-    "areaServed": data.areas || []
-  };
-  const faqSchema = (data.faq || []).length ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": data.faq.map(x => ({
-      "@type": "Question", "name": x.q,
-      "acceptedAnswer": { "@type": "Answer", "text": x.a }
-    }))
-  } : null;
-  $('schema').textContent = JSON.stringify(faqSchema ? [serviceSchema, faqSchema] : [serviceSchema]);
+  function renderFAQ(items = []) {
+    if (!items.length) { $('faq').innerHTML = ''; return; }
 
-  // Активный пункт меню
-  document.querySelectorAll('a[href*="/uslugi/"]').forEach(a => a.classList.add('is-active'));
+    const hidden = Math.max(items.length - MAX_FAQ_VISIBLE, 0);
+
+    $('faq').innerHTML = `
+    <h2>Частые вопросы</h2>
+    <div class="faq-grid" id="faq-grid">
+      ${items.map((f, i) => `
+        <div class="faq-item ${i >= MAX_FAQ_VISIBLE ? 'is-hidden' : ''}" data-open="false">
+          <div class="faq-q" role="button" tabindex="0"
+               aria-expanded="false" aria-controls="faq-a-${i}" id="faq-q-${i}">
+            <span class="faq-q-text">${f.q}</span>
+          </div>
+          <div class="faq-a" id="faq-a-${i}" role="region" aria-labelledby="faq-q-${i}" style="height:0">
+            <div class="faq-a-inner">${f.a}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    ${hidden ? `<div class="faq-more"><button class="btn btn--ghost" id="faq-more-btn">Показать ещё ${hidden}</button></div>` : ''}
+  `;
+
+    // анимация раскрытия/скрытия
+    const toggle = (item) => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      const open = item.dataset.open === 'true';
+
+      if (open) {
+        // закрыть
+        a.style.height = a.scrollHeight + 'px';
+        // форс-рефлоу
+        void a.offsetHeight;
+        a.style.height = '0';
+        item.dataset.open = 'false';
+        q.setAttribute('aria-expanded', 'false');
+      } else {
+        // открыть
+        a.style.height = a.scrollHeight + 'px';
+        const onEnd = () => {
+          a.style.height = 'auto';
+          a.removeEventListener('transitionend', onEnd);
+        };
+        a.addEventListener('transitionend', onEnd);
+        item.dataset.open = 'true';
+        q.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    // слушатели
+    document.querySelectorAll('.faq-item .faq-q').forEach(q => {
+      q.addEventListener('click', () => toggle(q.closest('.faq-item')));
+      q.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(q.closest('.faq-item')); }
+        if (e.key === 'Escape') {
+          const it = q.closest('.faq-item');
+          if (it?.dataset.open === 'true') toggle(it);
+        }
+      });
+    });
+
+    // показать скрытые
+    const moreBtn = document.getElementById('faq-more-btn');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', () => {
+        document.querySelectorAll('.faq-item.is-hidden').forEach(el => el.classList.remove('is-hidden'));
+        moreBtn.parentElement.remove();
+      });
+    }
+  }
+
+  // вызов после загрузки данных:
+  renderFAQ(data.faq || []);
+
+
+  // Quote / Founder
+  if (data.quote?.text && data.quote?.photo) {
+    const flip = data.quote.align === 'right' ? 'is-reverse' : '';
+    $('quote').innerHTML = `
+    <div class="founder-quote ${flip}">
+      <figure class="fq-media">
+        <img src="${data.quote.photo}" alt="${data.quote.author}" loading="lazy">
+      </figure>
+      <div class="fq-text">
+        <span class="fq-accent" aria-hidden="true"></span>
+        <blockquote class="fq-block">
+          <p>${data.quote.text}</p>
+        </blockquote>
+        <div class="fq-author">
+          <div class="fq-name">${data.quote.author}</div>
+          <div class="fq-role">${data.quote.role || ''}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+
+  // ===== Videos gallery (inline players, no modal)
+  {
+    const vids = Array.isArray(data.videos) && data.videos.length
+      ? data.videos
+      : (data.video ? [data.video] : []);
+
+    if (vids.length) {
+      $('video').innerHTML = `
+      <h2>${vids.length > 1 ? 'Видео' : (vids[0].title || 'Видео')}</h2>
+      <div class="video-gallery">
+        ${vids.map((v) => `
+          <div class="video-card">
+            <div class="video-inline" data-src="${v.src}"
+                 ${v.poster ? `data-poster="${v.poster}"` : ''}
+                 ${v.captions ? `data-captions="${v.captions}"` : ''}>
+              ${v.poster ? `<img class="video-thumb" src="${v.poster}" alt="${v.title || 'Видео'}" loading="lazy">` : ''}
+              <button class="video-play" aria-label="Смотреть видео"></button>
+              <span class="video-overlay" aria-hidden="true"></span>
+            </div>
+            ${(v.title || v.author || v.note) ? `
+              <div class="video-meta">
+                ${v.title ? `<div class="video-title">${v.title}</div>` : ''}
+                ${(v.author || v.note) ? `<div class="video-sub">${v.author ? `<b>${v.author}</b>` : ''}${v.note ? ` <span>· ${v.note}</span>` : ''}</div>` : ''}
+              </div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+      let current; // текущее <video>
+
+      const startPlay = (wrap) => {
+        // создаём <video> при первом клике
+        let vid = wrap.querySelector('video');
+        if (!vid) {
+          vid = document.createElement('video');
+          vid.playsInline = true;
+          vid.setAttribute('playsinline', '');
+          vid.preload = 'metadata';
+          const src = wrap.dataset.src;
+          const poster = wrap.dataset.poster;
+          if (poster) vid.poster = poster;
+          vid.src = src;
+
+          const caps = wrap.dataset.captions;
+          if (caps) {
+            const track = document.createElement('track');
+            track.kind = 'subtitles';
+            track.srclang = 'ru';
+            track.label = 'Русские';
+            track.src = caps;
+            track.default = true;
+            vid.appendChild(track);
+          }
+
+          // вставляем видео ПЕРЕД всем контентом
+          wrap.insertBefore(vid, wrap.firstChild);
+
+          // удаляем постер-изображение, чтобы не увеличивать высоту контейнера
+          const thumb = wrap.querySelector('.video-thumb');
+          if (thumb) thumb.remove();
+        }
+
+        // пауза у предыдущего ролика
+        if (current && current !== vid) current.pause();
+
+        vid.muted = false;
+        vid.controls = true;
+        vid.play().catch(() => { vid.muted = true; vid.play(); });
+
+        wrap.classList.add('is-playing');
+        current = vid;
+
+        vid.onclick = () => (vid.paused ? vid.play() : vid.pause());
+        vid.onpause = () => wrap.classList.remove('is-playing');
+        vid.onplay = () => wrap.classList.add('is-playing');
+      };
+
+      // клики по кнопкам play
+      document.querySelectorAll('#video .video-inline .video-play').forEach(btn => {
+        btn.addEventListener('click', () => startPlay(btn.closest('.video-inline')));
+      });
+
+      // IntersectionObserver: ставим на паузу, когда карточка уходит из зоны видимости
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const wrap = e.target;
+          const vid = wrap.querySelector('video');
+          if (!vid) return;
+          if (!e.isIntersecting && !vid.paused) {
+            vid.pause();
+          }
+        });
+      }, { threshold: 0.25 }); // ~25% карточки вне экрана — пауза
+
+      document.querySelectorAll('#video .video-inline').forEach(w => io.observe(w));
+    }
+  }
+
+
+
+
 })();

@@ -1,4 +1,5 @@
 /* ---- Заголовки и отступы ---- */
+
 /* держим контент выше оверлея */
 .service-page .hero{ position: relative; 
 margin-bottom: 20px;}
@@ -31,12 +32,11 @@ margin-bottom: 20px;}
   padding-bottom: 40px;
 }
 
-.service-page h2{ 
-    margin: 0 0 12px; 
+.service-page h2 { 
+    margin: 60px 0 30px; 
     font-size: var(--font-size-card-title);
     line-height: var(--line-height-100);
     color: var(--clr-card-title);
-    margin: 0 0 16px;
 }
 
 /* Hero — аккуратнее подпись и чипы */
@@ -75,10 +75,162 @@ margin-bottom: 20px;}
 /* на тёмном фоне героя можно сделать чуть толще */
 .service-page .hero a:not(.btn)::after{ height:3px; }
 
+
+/* ПО ШАГАМ */
+/* ===== Timeline / Steps (1 колонка, авто-нумерация) ===== */
+.service-page .steps{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap: var(--gap);
+  counter-reset: step;
+  position: relative;
+}
+
+/* вертикальная линия таймлайна */
+.service-page .steps::before{
+  content:""; position:absolute; left:22px; top:0; bottom:0;
+  width:2px; background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.12));
+}
+
+/* карточка шага */
+.service-page .step{
+  position:relative;
+  display:flex; gap:14px;
+  background: var(--clr-white);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding:16px 16px 16px 56px;   /* слева место под номер */
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service-page .step:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  border-color: rgba(0,91,255,.18);
+}
+
+/* номер шага — круг, авто счётчик */
+.service-page .step__num{
+  position:absolute; left:8px; top:16px;
+  width:28px; height:28px; border-radius:50%;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  color: var(--clr-white); font-weight:700; font-size: 14px;
+  box-shadow: 0 6px 16px rgba(0,91,255,.25);
+  counter-increment: step;
+}
+.service-page .step__num::after{ content: counter(step); }
+
+/* контент шага */
+.service-page .step__content{ width:100%; }
+.service-page .step__head{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.service-page .step__icon{
+  width:28px; height:28px; border-radius:50%; display:grid; place-items:center;
+  background: var(--clr-gray);
+  font-size:16px; line-height:1;
+}
+.service-page .step__title{
+  font-size: var(--font-size-h3); font-weight:700; color: var(--clr-card-title);
+}
+.service-page .step__text{
+  color: var(--clr-text-light); font-size: var(--font-size-card-item); line-height: var(--line-height-lg);
+  margin-top: 4px;
+}
+.service-page .step__actions{ margin-top:12px; }
+
+/* мобильная мелочь */
+@media (max-width: 560px){
+  .service-page .steps::before{ left:18px; }
+  .service-page .step{ padding-left: 50px; }
+  .service-page .step__num{ left:6px; }
+}
+
+/* ===== Timeline / Steps (1 колонка, авто-нумерация, сворачивание) ===== */
+.service-page .steps{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap: var(--gap);
+  counter-reset: step;
+  position: relative;
+}
+.service-page .steps::before{
+  content:""; position:absolute; left:22px; top:0; bottom:0;
+  width:2px; background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.12));
+}
+
+.service-page .step{
+  display: block; 
+  position:relative;
+  background: var(--clr-white);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding:16px 16px 0 56px;          /* слева под номер */
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service-page .step.is-hidden{ display:none; }
+.service-page .step:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  border-color: rgba(0,91,255,.18);
+}
+
+/* номер шага */
+.service-page .step__num{
+  position:absolute; left:8px; top:16px;
+  width:28px; height:28px; border-radius:50%;
+  display:grid; place-items:center;
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
+  color: var(--clr-white); font-weight:700; font-size:14px;
+  box-shadow: 0 6px 16px rgba(0,91,255,.25);
+  counter-increment: step;
+}
+.service-page .step__num::after{ content: counter(step); }
+
+/* заголовок шага (кнопка) */
+.service-page .step__q{
+  display:flex; align-items:center; gap:10px;
+  width:100%; padding: 0 0 12px 0; background: none; border:0; cursor:pointer;
+  text-align:left; color: var(--clr-card-title); font-weight:700; font-size: var(--font-size-h3);
+  position:relative;
+}
+.service-page .step__q:focus-visible{ outline:3px solid rgba(0,91,255,.35); outline-offset:2px; }
+
+.service-page .step__q::after{
+  content:""; margin-left:auto; width:10px; height:10px; opacity:.7;
+  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s ease, opacity .2s ease;
+}
+.service-page .step[data-open="true"] .step__q::after{ transform: rotate(-135deg); }
+
+.service-page .step__icon{
+  width:28px; height:28px; border-radius:50%; display:grid; place-items:center;
+  background: var(--clr-gray); font-size:16px; line-height:1;
+}
+
+/* ответ (с анимацией высоты) */
+.service-page .step__a{
+  height:0; overflow:hidden; transition: height .25s ease; will-change: height;
+  background: linear-gradient(0deg, rgba(0,0,0,.02), rgba(0,0,0,0));
+}
+.service-page .step__a-inner{
+  padding: 0 0 16px 0; color: var(--clr-text);
+  font-size: var(--font-size-card-item); line-height: var(--line-height-lg);
+}
+
+.service-page .steps-more{ margin-top: 12px; display:flex; justify-content:center; }
+.service-page .steps-more .btn{ min-width: 240px; }
+
+/* мобильный сдвиг линии/номера */
+@media (max-width: 560px){
+  .service-page .steps::before{ left:18px; }
+  .service-page .step{ padding-left:50px; }
+  .service-page .step__num{ left:6px; }
+}
+
+
 /* ===== Карточки для .grid--3 (современно и адаптивно) ===== */
 .service-page .grid--3{
     display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: var(--gap);
     margin-bottom: 40px;
   }
@@ -284,99 +436,358 @@ margin-bottom: 20px;}
   
 
 /* ---- Лицензии и документы ---- */
-/* ===== Лицензии / Сертификаты ===== */
-.service-page #licenses { margin-bottom: 40px; }
+/* ===== Лицензии — слайдер ===== */
+.service-page #licenses .swiper{ padding: 8px 0 38px; }
+.service-page #licenses .swiper-slide{ height: auto; }
 
-.service-page #licenses .grid--4{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: var(--gap);
-}
-
-/* Карточка */
 .service-page #licenses .card{
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  padding: 16px;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  padding:16px;
   background: var(--clr-white);
-  border: 1px solid rgba(0,0,0,.06);
+  border:1px solid rgba(0,0,0,.06);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  overflow: hidden;
+  overflow:hidden;
 }
-
-/* Враппер превью с фикс. соотношением сторон */
-.service-page #licenses .thumb{
-  width: 100%;
-  aspect-ratio: 3 / 4;               /* близко к А4 в портретной ориентации */
-  background: var(--clr-light-bg);
-  border-radius: calc(var(--radius) - 4px);
-  display: grid; place-items: center;
-  overflow: hidden; position: relative;
-}
-
-/* Изображение: по умолчанию НЕ режем (читаемость важнее) */
-.service-page #licenses img{
-  width: 100%; height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-}
-
-/* Подпись */
-.service-page #licenses .card p{
-  text-align: center;
-  font-size: var(--font-size-sm);
-  color: var(--clr-text-light);
-  margin: 4px 0 0;
-}
-
-/* Ховер: лёгкое приподнятие и индикатор кликабельности */
 .service-page #licenses .card:hover{
   transform: translateY(-3px);
   box-shadow: 0 10px 28px rgba(0,0,0,.08);
   border-color: rgba(0,91,255,.18);
 }
-.service-page #licenses .thumb::after{
-  content:"";
-  position:absolute; right:8px; bottom:8px; width:18px; height:18px;
-  background: currentColor; color: var(--clr-accent); opacity:.85;
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
-          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000" viewBox="0 0 24 24"><path d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>') center/contain no-repeat;
-  transition: transform .2s ease;
-}
-.service-page #licenses .card:hover .thumb::after{ transform: scale(1.05); }
 
-/* Адаптив */
-@media (max-width: 480px){
-  .service-page #licenses .grid--4{
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
-  .service-page #licenses .thumb{ aspect-ratio: 2 / 3; }
+/* Превью документа */
+.service-page #licenses .thumb{
+  width:100%;
+  aspect-ratio: 3 / 4;                  /* похоже на А4 (портрет) */
+  background: var(--clr-light-bg);
+  border-radius: calc(var(--radius) - 4px);
+  display:grid; place-items:center;
+  overflow:hidden;
+}
+.service-page #licenses img{
+  width:100%; height:100%;
+  object-fit: contain;                   /* читаемость важнее кропа */
+  object-position:center;
+  display:block;
+}
+.service-page #licenses .card p{
+  text-align:center;
+  font-size: var(--font-size-sm);
+  color: var(--clr-text-light);
+  margin:6px 0 0;
 }
 
-/* === Режим "кропать как карточки" (по желанию) ===
-     Добавь класс .is-cover на #licenses, если нужно обрезать изображение */
+/* Навигация/pagination — в стиле «кейсов» */
+.service-page #licenses .swiper-button-prev,
+.service-page #licenses .swiper-button-next{
+  width: 40px; height: 40px; border-radius: var(--btn-radius);
+  background: var(--clr-accent); color: var(--clr-white);
+  box-shadow: 0 6px 16px rgba(0,91,255,.25);
+}
+.service-page #licenses .swiper-button-prev:after,
+.service-page #licenses .swiper-button-next:after{ font-size:16px; }
+.service-page #licenses .swiper-pagination-bullet{
+  width:8px; height:8px; opacity:.4; background: var(--clr-accent);
+}
+.service-page #licenses .swiper-pagination-bullet-active{ opacity:1; }
+
+/* Опционально: режим «кропать как карточки» */
 .service-page #licenses.is-cover img{ object-fit: cover; }
 .service-page #licenses.is-cover .thumb{ aspect-ratio: 4 / 5; }
 
+/* Лайтбокс поверх фикс-шапки */
+.glightbox-container { z-index: 99; }
 
-.service-page #docs .doc-list{ list-style: none; padding: 0; margin: 0; display:grid; gap:8px; }
-.service-page #docs .doc-list li a{ display:inline-flex; align-items:center; gap:8px; }
-.service-page #docs .doc-list li a::before{
-  content:"📄"; font-size: 16px; opacity:.7;
+
+/* ===== Лицензии / Сертификаты ===== */
+/* ===== Документы (сетка карточек) ===== */
+.service-page #docs .doc-grid{
+  list-style:none; margin:0; padding:0;
+  display:grid; gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
+
+.service-page #docs .doc-card{
+  display:flex; flex-direction:column; gap:12px;
+  background: var(--clr-white);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding:16px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service-page #docs .doc-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  border-color: rgba(0,91,255,.18);
+}
+
+/* Линия-ховер для ссылок мы уже делали — отключим на главной карточной ссылке */
+.service-page #docs .doc-link{ display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; position:relative; }
+.service-page #docs .doc-link::after{ display:none; }
+
+/* Иконка файла */
+.service-page #docs .doc-icon{
+  width:44px; height:56px; border-radius:6px; flex:0 0 auto; position:relative;
+  background: var(--clr-gray);
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.06);
+  /* «листик» через mask */
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M224 136V0H64C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H248c-13.3 0-24-10.7-24-24zM384 121.9V128H256V0h6.1c12.7 0 24.9 5.1 33.9 14.1l73.9 73.9c9 9 14.1 21.2 14.1 33.9z"/></svg>') center/contain no-repeat;
+          mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M224 136V0H64C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H248c-13.3 0-24-10.7-24-24zM384 121.9V128H256V0h6.1c12.7 0 24.9 5.1 33.9 14.1l73.9 73.9c9 9 14.1 21.2 14.1 33.9z"/></svg>') center/contain no-repeat;
+  background: var(--clr-accent);
+}
+/* Цвета по типам */
+.service-page #docs .doc-icon--pdf{ background: linear-gradient(135deg,#ff4d4f,#d9363e); }
+.service-page #docs .doc-icon--doc{ background: linear-gradient(135deg,#3a86ff,#1e60d9); }
+.service-page #docs .doc-icon--xls{ background: linear-gradient(135deg,#2dc653,#149b39); }
+.service-page #docs .doc-icon--ppt{ background: linear-gradient(135deg,#ff7a59,#ff4d2e); }
+.service-page #docs .doc-icon--img{ background: linear-gradient(135deg,#7b61ff,#5b43d6); }
+.service-page #docs .doc-icon--zip{ background: linear-gradient(135deg,#6c757d,#495057); }
+.service-page #docs .doc-icon--file{ background: var(--clr-accent); }
+
+/* Текст */
+.service-page #docs .doc-text{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+.service-page #docs .doc-title{
+  font-weight:700; color: var(--clr-card-title);
+  font-size: var(--font-size-cell-title);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.service-page #docs .doc-meta{
+  font-size: var(--font-size-sm); color: var(--clr-text-light);
+}
+
+/* Кнопки действий */
+.service-page #docs .doc-actions{ display:flex; gap:10px; margin-top:auto; }
+.service-page #docs .doc-actions .btn{ flex:1; }
+
+/* Адаптив */
+@media (max-width: 520px){
+  .service-page #docs .doc-actions{ flex-direction:column; }
+}
+
+/* ===== Founder РуководительQuote ===== */
+.service-page .founder-quote{
+  display:grid;
+  grid-template-columns: minmax(280px, 1fr) 1.3fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: center;
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: clamp(16px, 3vw, 28px);
+}
+.service-page .founder-quote.is-reverse{
+  grid-template-columns: 1.3fr minmax(280px, 1fr);
+  direction: rtl;                 /* меняем порядок без доп. разметки */
+}
+.service-page .founder-quote.is-reverse > *{ direction: ltr; }
+
+.service-page .fq-media{
+  margin:0; border-radius: calc(var(--radius) - 4px);
+  overflow:hidden; height: 100%;
+}
+.service-page .fq-media img{
+  width:100%; height:100%;
+  object-fit: cover; object-position: center;
+  aspect-ratio: 4/3;
+  filter: grayscale(12%);         /* лёгкая стилизация */
+}
+
+.service-page .fq-text{
+  position:relative; padding-left: clamp(16px, 2vw, 24px);
+}
+.service-page .founder-quote.is-reverse .fq-text{ padding-left: 0; padding-right: clamp(16px, 2vw, 24px); }
+
+/* вертикальная акцент-линия + “плашка” */
+.service-page .fq-accent{
+  position:absolute; left:0; top: 6px; bottom: 6px; width: 2px;
+  background: var(--clr-primary);
+}
+.service-page .founder-quote.is-reverse .fq-accent{ left:auto; right:0; }
+.service-page .fq-accent::before{
+  content:""; position:absolute; top: 40px; left: -18px;
+  width: 36px; height: 16px; border-radius: 4px;
+  background: var(--clr-accent);
+  box-shadow: 0 6px 16px rgba(0,91,255,.18);
+}
+.service-page .founder-quote.is-reverse .fq-accent::before{ left: auto; right: -18px; }
+
+.service-page .fq-block{
+  margin:0 0 18px 0;
+  color: var(--clr-text);
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.6;
+  position:relative;
+}
+.service-page .fq-block p{ margin:0; }
+.service-page .fq-block::before{
+  content:"“"; position:absolute; left:-12px; top:-8px;
+  font-size: clamp(28px, 4vw, 40px); color: rgba(0,0,0,.15);
+}
+
+.service-page .fq-author .fq-name{
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--clr-card-title);
+  font-size: clamp(16px, 1.6vw, 20px);
+}
+.service-page .fq-author .fq-role{
+  color: var(--clr-text-light);
+  margin-top: 6px;
+  font-size: var(--font-size-base);
+}
+
+/* адаптив */
+@media (max-width: 900px){
+  .service-page .founder-quote{
+    grid-template-columns: 1fr !important;
+  }
+  .service-page .fq-media img{
+    aspect-ratio: 16 / 9;
+  }
+  .service-page .fq-text{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .service-page .fq-accent{ display: none; }
+}
+
+
 
 /* ---- FAQ ---- */
-.service-page .faq details + details{ margin-top: 10px; }
-.service-page .faq summary{ position:relative; padding-right: 24px; }
-.service-page .faq summary::after{
-  content:""; position:absolute; right:6px; top:50%; width:8px; height:8px;
-  border-right:2px solid currentColor; border-bottom:2px solid currentColor;
-  transform: translateY(-50%) rotate(-45deg); transition: transform .2s ease;
-  opacity:.7;
+/* ===== FAQ (современный аккордеон) ===== */
+.service-page .faq .faq-grid{
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
 }
-.service-page .faq details[open] summary::after{ transform: translateY(-50%) rotate(45deg); }
+
+.service-page .faq .faq-item{
+  background: var(--clr-white);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.service-page .faq .faq-item.is-hidden{ display: none; }
+
+.service-page .faq .faq-q{
+  display:flex; align-items:center; gap:12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  color: var(--clr-card-title);
+}
+.service-page .faq .faq-q:focus-visible{
+  outline: 3px solid rgba(0,91,255,.35);
+  outline-offset: 2px;
+}
+
+/* стильная стрелка */
+.service-page .faq .faq-q::after{
+  content:""; margin-left: auto;
+  width: 10px; height: 10px; opacity:.7;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform .2s ease, opacity .2s ease;
+}
+.service-page .faq .faq-item[data-open="true"] .faq-q::after{ transform: rotate(-135deg); }
+
+/* область ответа (анимация высоты) */
+.service-page .faq .faq-a{
+  height: 0; overflow: hidden;
+  transition: height .25s ease;
+  will-change: height;
+  background: linear-gradient(0deg, rgba(0,0,0,.02), rgba(0,0,0,0));
+}
+.service-page .faq .faq-a-inner{
+  padding: 0 16px 14px 16px;
+  color: var(--clr-text);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-lg);
+}
+
+/* ховер эффект */
+.service-page .faq .faq-item:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  border-color: rgba(0,91,255,.18);
+}
+
+/* кнопка "Показать ещё" */
+.service-page .faq .faq-more{ margin-top: 12px; display:flex; justify-content:center; }
+.service-page .faq .faq-more .btn{ min-width: 240px; }
+
+/* узкие экраны */
+@media (max-width: 640px){
+  .service-page .faq .faq-grid{ grid-template-columns: 1fr; }
+}
+
+/* ВИДЕОКОНТЕНТ */
+/* ===== Videos gallery ===== */
+.service-page #video .video-gallery{
+  display:grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.service-page #video .video-card{ display:flex; flex-direction:column; gap:8px; }
+
+.service-page #video .video-inline{
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: var(--clr-light-bg);
+}
+.service-page #video .video-thumb{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* оверлей + play */
+.service-page #video .video-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,.05));
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+.service-page #video .video-play{
+  position:absolute; left:50%; top:50%;
+  transform: translate(-50%,-50%);
+  width:64px; height:64px; border-radius:50%;
+  background: var(--clr-white);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  border: none; cursor: pointer;
+}
+.service-page #video .video-play::before{
+  content:""; position:absolute; left:50%; top:50%;
+  transform: translate(-40%,-50%);
+  border-style: solid; border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent var(--clr-accent);
+}
+
+.service-page #video .video-inline video{
+  width:100%; display:block; aspect-ratio: 16/9; object-fit: cover;
+}
+
+.service-page #video .video-meta{ color: var(--clr-text-light); font-size: var(--font-size-sm); }
+.service-page #video .video-title{ font-weight:700; color: var(--clr-card-title); }
+
+/* когда видео играет — никаких накладок поверх и постера */
+.service-page #video .video-inline.is-playing .video-overlay{ opacity:0; }
+.service-page #video .video-inline.is-playing .video-play{ display:none; }
+/* если где-то постер останется, на всякий случай скрываем в состоянии проигрывания */
+.service-page #video .video-inline.is-playing .video-thumb{ display:none; }
+
+
+
 
 /* ---- Форма ---- */
 .service-page #form form input,
@@ -384,3 +795,5 @@ margin-bottom: 20px;}
   border:1px solid #e4e7ed; border-radius: var(--radius);
   font-size: var(--font-size-base);
 }
+
+
