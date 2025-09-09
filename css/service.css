@@ -33,12 +33,27 @@
 /* чипы преимуществ */
 .service-page .hero .hero__usp{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px; list-style: none; padding: 0; margin: 16px auto 0;
-  max-width: 920px;
+  max-width: 90%;
 }
-.service-page .hero .hero__usp .card{
-  background: rgba(255,255,255,.94); color: var(--clr-text);
+
+@media (max-width: 768px){
+  .service-page .hero .hero__usp{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px; list-style: none; padding: 0; margin: 16px auto 0;
+    max-width: 100%;
+  }
+}
+
+
+.service-page .hero .hero__usp .cardservice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+  background: rgba(255,255,255,.44); color: var(--clr-text);
   border-radius: 999px; box-shadow: var(--shadow-card); padding: 10px 14px;
 }
 
@@ -856,122 +871,3 @@
   font-size: var(--font-size-sm);
 }
 
-/* ===== Sticky CTA (мобилка) ===== */
-/* ===== Sticky CTA: FAB + панель ===== */
-.sticky-cta{
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(env(safe-area-inset-bottom) + 12px);
-  z-index: 1000;
-  display: none;                /* только на мобилке включаем через .is-active */
-}
-.sticky-cta.is-active{ display: block; }
-.sticky-cta.is-hidden{ opacity: 0; pointer-events: none; transition: opacity .2s ease; }
-
-/* Кнопка-FAB (круглая, пульс) */
-.sticky-cta__fab{
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  border: none;
-  background: var(--btn-bg);
-  color: var(--btn-color);
-  box-shadow: 0 10px 28px rgba(0,91,255,.28);
-  cursor: pointer;
-  display: grid; place-items: center;
-  position: relative;
-  animation: ctaPulse 2.2s ease-in-out infinite;
-}
-.sticky-cta__fab:hover{ background: var(--btn-hover-bg); }
-@keyframes ctaPulse{
-  0%, 100% { box-shadow: 0 10px 28px rgba(0,91,255,.28); }
-  50% { box-shadow: 0 14px 36px rgba(0,91,255,.40); }
-}
-
-/* Панель действий (раскрывается над FAB) */
-.sticky-cta__panel{
-  position: absolute;
-  left: 50%; bottom: 64px; transform: translateX(-50%) translateY(6px);
-  width: min(640px, 94vw);
-  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;
-  padding: 8px;
-  background: rgba(255,255,255,.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,0,0,.06);
-  border-radius: 14px;
-  box-shadow: 0 16px 38px rgba(0,0,0,.18);
-  opacity: 0; pointer-events: none;
-  transition: opacity .18s ease, transform .18s ease;
-}
-.sticky-cta.is-expanded .sticky-cta__panel{
-  opacity: 1; pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* Кнопки внутри панели */
-.sticky-cta__btn{
-  display:flex; align-items:center; justify-content:center;
-  padding: 10px 12px;
-  border-radius: var(--btn-radius);
-  text-decoration: none;
-  font-size: var(--btn-font-size);
-  color: var(--clr-text);
-  background: var(--clr-white);
-  border: 1px solid rgba(0,0,0,.12);
-  box-shadow: var(--shadow-card);
-}
-.sticky-cta__btn--primary{
-  background: var(--btn-bg);
-  color: var(--btn-color);
-  border-color: transparent;
-}
-.sticky-cta__btn--primary:hover{ background: var(--btn-hover-bg); }
-
-/* Узкие экраны — кнопки в две строки, если нужно */
-@media (max-width: 420px){
-  .sticky-cta__panel{
-    grid-template-columns: 1fr 1fr;
-    width: min(520px, 94vw);
-  }
-}
-
-
-.sticky-cta__btn{
-  display: inline-flex; align-items: center; justify-content: center;
-  padding: 10px 12px;
-  border-radius: var(--btn-radius);
-  text-decoration: none;
-  font-size: var(--btn-font-size);
-  line-height: 1.2;
-  border: 1px solid rgba(0,0,0,.12);
-  background: var(--clr-white);
-  color: var(--clr-text);
-  box-shadow: var(--shadow-card);
-}
-.sticky-cta__btn--primary{
-  background: var(--btn-bg);
-  color: var(--btn-color);
-  border-color: transparent;
-}
-.sticky-cta__btn--primary:hover{ background: var(--btn-hover-bg); }
-
-
-/* ===== Локальная кнопка "Наверх" (страница услуг) ===== */
-/* локальная "Наверх" — поверх всего и правее FAB */
-.to-top-local{
-  position: fixed;
-  right: 20px;
-  bottom: calc(env(safe-area-inset-bottom) + 20px);
-  width: 44px; height: 44px;
-  display:flex; align-items:center; justify-content:center;
-  border: none; border-radius: var(--btn-radius);
-  background: var(--btn-bg); color: var(--btn-color);
-  cursor:pointer; z-index: 1100;        /* > sticky-cta (1000) */
-  opacity:0; pointer-events:none;
-  box-shadow: 0 4px 12px rgba(0,0,0,.2);
-  transition: opacity .3s ease, background-color .2s ease, transform .15s ease;
-}
-.to-top-local.show{ opacity:1; pointer-events:auto; }
-.to-top-local:hover{ background: var(--btn-hover-bg); transform: translateY(-1px); }
-
-.to-top-local svg{ width: 20px; height: 20px; }

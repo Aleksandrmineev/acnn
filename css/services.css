@@ -3,11 +3,10 @@
   display: grid;
   grid-template-columns: repeat(
     auto-fit,
-    minmax(clamp(300px, 40vw, 500px), 1fr)
+    minmax(clamp(270px, 40vw, 500px), 1fr)
   );
   gap: var(--gap);
   max-width: var(--container-width);
-  padding: 0 var(--container-padding);
   margin-top: var(--section-padding-mobile);
 }
 

@@ -161,36 +161,89 @@
     </section>
 
     <!-- Преимущества -->
-    <section class="advantages" id="advantages">
+    <!-- Lottie (CDN) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+
+    <section class="advantages v3 v3d" id="advantages">
       <div class="container">
         <h2 class="section-title">Достижения АС Монтаж</h2>
-        <div class="advantages__list">
-          <div class="advantage advantage--clients">
-            <img src="img/icon/clients.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">Объекты: Кремль, Центробанк, Лукойл, ЖК, школы</p>
-          </div>
-          <div class="advantage advantage--license">
-            <img src="img/icon/license.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">Лицензии МЧС, СРО, Росгвардия</p>
-          </div>
-          <div class="advantage advantage--team">
-            <img src="img/icon/team.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">Команда инженеров с опытом от 5 лет</p>
-          </div>
-          <div class="advantage advantage--integrated">
-            <img src="img/icon/integrated.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">Комплексный подход: проектирование, монтаж, обслуживание</p>
-          </div>
-          <div class="advantage advantage--guarantee">
-            <img src="img/icon/guarantee.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">Гарантии и прозрачные условия</p>
-          </div>
 
-          <div class="advantage advantage--experience">
-            <img src="img/icon/experience.svg" alt="" class="advantage__icon" />
-            <p class="card__title2">10+ лет на рынке</p>
-          </div>
+        <ul class="adv3-grid" role="list">
+          <!-- 1. Объекты -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="0,90" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/clients.svg" alt="">
+              </div>
+              <h3 class="adv3-title">Объекты федерального уровня</h3>
+              <p class="adv3-sub">Кремль, Центробанк, Лукойл, ЖК, школы</p>
+            </div>
+          </li>
+
+          <!-- 2. Лицензии -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="10,80" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/license.svg" alt="">
+              </div>
+              <h3 class="adv3-title">Государственные лицензии</h3>
+              <p class="adv3-sub">МЧС • СРО • Росгвардия</p>
+            </div>
+          </li>
+
+          <!-- 3. Команда -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="0,75" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/team.svg" alt="">
+              </div>
+              <h3 class="adv3-title">Сильная инженерная команда</h3>
+              <p class="adv3-sub">Стаж каждого 5+ лет</p>
+            </div>
+          </li>
+
+          <!-- 4. Полный цикл -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="0,60" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/integrated.svg" alt="">
+              </div>
+              <h3 class="adv3-title">Полный цикл работ</h3>
+              <p class="adv3-sub">Проектирование → монтаж → сервис</p>
+            </div>
+          </li>
+
+          <!-- 5. Гарантии -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="5,70" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/guarantee.svg" alt="">
+              </div>
+              <h3 class="adv3-title">Прозрачные гарантии</h3>
+              <p class="adv3-sub">Фиксируем сроки и условия</p>
+            </div>
+          </li>
+
+          <!-- 6. Опыт -->
+          <li class="adv3-card">
+            <div class="adv3-inner">
+              <div class="adv3-icon-wrap" data-magnet>
+                <div class="adv3-lottie" ata-lottie="..." data-seg="0,90" aria-hidden="true"></div>
+                <img class="adv3-fallback" src="img/icon/experience.svg" alt="">
+              </div>
+              <h3 class="adv3-title">10+ лет на рынке</h3>
+              <p class="adv3-sub">Опыт на объектах любой сложности</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
+
 
     <!-- Модальное окно -->
     <div class="modal" id="serviceModal">
