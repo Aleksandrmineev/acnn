@@ -90,6 +90,8 @@
 .person__name {
   font-weight: var(--fw-bold, 600);
   color: var(--clr-card-title);
+  text-transform: uppercase;
+  font-size: var(--font-size-card-item);
 }
 .person__role {
   font-size: 13px;

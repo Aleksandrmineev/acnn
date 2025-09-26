@@ -143,6 +143,8 @@
   text-decoration: none;
   font-weight: 400;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+  font-size: var(--font-size-card-item);
+  text-transform: uppercase;
 }
 
 /* анимированная линия */

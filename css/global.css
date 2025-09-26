@@ -336,14 +336,7 @@ html.lock .to-top, body.lock .to-top{ display:none; }
   }
 }
 
-.card__title{
-  font-size: var(--font-size-card-title);
-  font-weight:300; line-height: var(--line-height-base);
-  margin-bottom:.3rem; color: var(--clr-white);
-  text-shadow: var(--shadow-card-text);
-  text-transform: uppercase;
-}
-.card__title2{
+.card__title, .card__title2{
   font-size: var(--font-size-card-title2);
   font-weight:400; line-height: var(--line-height-base);
   margin-bottom:.3rem; color: var(--clr-white);
