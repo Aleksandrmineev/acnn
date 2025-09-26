@@ -66,14 +66,20 @@
     z-index: 0;
   }
 
-/* сам заголовок — мягкая тень, без «грязи» */
 .service-page .hero h1{
   color: var(--clr-white);
   font-weight: 700;
   text-shadow:
-    0 1px 0 rgba(255,255,255,.35),   /* лёгкое свечение сверху (на светлом фоне) */
-    0 4px 18px rgba(0,0,0,.20);      /* мягкая тень вниз для читаемости */
-    padding-bottom: 40px;
+    0 1px 0 rgba(255,255,255,.35),
+    0 4px 18px rgba(0,0,0,.20);
+  padding-bottom: 40px;
+
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 /* подзаголовок тоже чуть «поднимем» */
@@ -85,9 +91,6 @@
 
 .service-page h2 { 
     margin: 60px 0 30px; 
-    font-size: var(--font-size-card-title);
-    line-height: var(--line-height-100);
-    color: var(--clr-card-title);
 }
 
 /* Hero — аккуратнее подпись и чипы */
@@ -179,7 +182,7 @@
   background: var(--clr-gray);
   font-size:16px; line-height:1;
 }
-.service-page .step__title{
+.step__title, .faq .faq-q {
   font-size: var(--font-size-card-item); font-weight:400; color: var(--clr-card-title);
 }
 .service-page .step__text{
@@ -677,6 +680,7 @@
   font-size: clamp(18px, 2.2vw, 22px);
   line-height: 1.6;
   position:relative;
+  font-style: italic;
 }
 .service-page .fq-block p{ margin:0; }
 .service-page .fq-block::before{
@@ -737,8 +741,6 @@
   padding: 14px 16px;
   cursor: pointer;
   position: relative;
-  font-weight: 600;
-  color: var(--clr-card-title);
 }
 .service-page .faq .faq-q:focus-visible{
   outline: 3px solid rgba(0,91,255,.35);

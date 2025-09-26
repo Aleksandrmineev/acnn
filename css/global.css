@@ -31,7 +31,7 @@
 --font-size-h1:  clamp(28px, 5vw, 45px); 
 --font-size-h3:  clamp(18px, 3.4vw, 28px);
 --font-size-subtitle: clamp(17px, 2.4vw, 22px);  /* заметно меньше h1/h2, но читабельно */
---font-size-base: clamp(9px, .9vw, 10px);     /* комфортный абзац */
+--font-size-base: clamp(12px, .9vw, 13px);     /* комфортный абзац */
 --font-size-sm: clamp(12px, 1.4vw, 14px);
 --font-size-card-item: clamp(14px, 1.8vw, 16px);
 --font-size-caption: clamp(12px, 1.2vw, 13px);
@@ -120,14 +120,14 @@ footer { margin-top: auto; }
   margin-right: auto;
 }
 .section { padding: var(--section-padding) 0; }
-.section-title {
+/* .section-title {
   font-size: var(--font-size-h3);
   text-align: center;
   font-weight: 300;
   margin: 40px 0 2rem;
   text-transform: var(--font-uppercase);
   color: var(--clr-text);
-}
+} */
 
 /* ========================== */
 /*        Typography          */
@@ -143,6 +143,7 @@ h2 {
   font-size: var(--font-size-card-title);
   line-height: var(--line-height-xxl);
   color: var(--clr-card-title);
+  text-transform: uppercase;
 }
 .subtitle { font-size: var(--font-size-subtitle); color: var(--clr-text); }
 p, li { font-size: var(--font-size-base); color: var(--clr-text); line-height: var(--line-height-base); }
@@ -150,6 +151,10 @@ p, li { font-size: var(--font-size-base); color: var(--clr-text); line-height: v
 /* ========================== */
 /*         Buttons            */
 /* ========================== */
+
+button {
+  font-family: var(--font-family);
+}
 .btn {
   display: inline-block;
   font-family: var(--font-family);

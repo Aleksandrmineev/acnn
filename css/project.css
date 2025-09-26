@@ -1,8 +1,10 @@
 .project__title {
-  font-family: var(--font-family:);
-  font-size: var(--font-size-card-title);
-  font-weight: 600;
+  font-size: var(--font-size-xxl);
+  line-height: var(--line-height-xxl);
+  text-transform: var(--font-uppercase);
+  color: var(--clr-text);
   margin: 20px auto;
+  color: var(--clr-card-title);
 }
 
 h2 {
@@ -225,7 +227,6 @@ h2 {
   border: 1px solid transparent;
   background: transparent;
   color: var(--clr-text);
-  font: inherit;
   padding: 10px 14px;
   border-radius: var(--btn-radius);
   white-space: nowrap;
@@ -284,7 +285,7 @@ h2 {
   font-size: clamp(64px, 10vw, 120px); line-height: 1;
   color: rgba(0,0,0,.05); font-weight: 700; pointer-events: none; user-select: none;
 }
-.quote p { font-size: var(--font-size-base); line-height: var(--line-height-lg); color: var(--clr-text); }
+.quote p { font-size: var(--font-size-base); line-height: var(--line-height-lg); color: var(--clr-text);   font-style: italic;   }
 .quote cite { display: block; margin-top: clamp(10px, 1.6vw, 14px); font-style: normal; font-weight: 600; color: var(--clr-card-title); }
 
 .quote:hover, .quote:focus-within {

@@ -156,4 +156,5 @@
 .contacts__form {
   margin: 0 auto; /* форма сама станет по центру */
   max-width: 400px; /* ограничиваем ширину, чтобы не растягивалась */
+  background-color: var(--clr-light-bg);
 }
