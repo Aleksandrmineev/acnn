@@ -668,65 +668,72 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 });
 
-function initStickyCta() {
-  // если уже инициализировано — выходим
+function initStickyCta() { 
   if (document.getElementById('stickyCta')) return;
 
-  // Достаём телефон/WA
+  // Телефон берём из первого tel: на странице (fallback – городской)
   const telFromDom = document.querySelector('a[href^="tel:"]')?.getAttribute('href') || '+78312288022';
   const PHONE = telFromDom.replace(/^tel:/, '');
-  const waHref = 'https://wa.me/' + PHONE.replace(/\D/g, '');
+  // НОВЫЙ номер для WhatsApp (не как у телефона)
+  const WA_NUM = '+79534157494';
+  const waHref = 'https://wa.me/' + WA_NUM.replace(/\D/g, '');
 
-  // Корневой блок
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
   bar.id = 'stickyCta';
 
-  // FAB
   const fab = document.createElement('button');
   fab.type = 'button';
-  fab.className = 'sticky-cta__fab';
+  fab.className = 'sticky-cta__fab sticky-cta__fab--wa';
   fab.setAttribute('aria-expanded', 'false');
   fab.setAttribute('aria-label', 'Открыть быстрые действия');
-  fab.innerHTML = '⋯'; // можно заменить на svg-иконку
+  fab.innerHTML = `
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+  <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+</svg>
+`;
 
-  // Панель
   const panel = document.createElement('div');
   panel.className = 'sticky-cta__panel';
   panel.hidden = true;
   panel.innerHTML = `
-    <a class="sticky-cta__btn" href="tel:${PHONE}">Позвонить</a>
-    <a class="sticky-cta__btn" href="${waHref}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="sticky-cta__btn sticky-cta__btn--icon" href="tel:${PHONE}" aria-label="Позвонить">
+      <!-- phone svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+     fill="#25D366" viewBox="0 0 16 16" aria-hidden="true">
+  <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+</svg>
+
+
+    </a>
+    <a class="sticky-cta__btn sticky-cta__btn--icon" href="${waHref}" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+      <!-- whatsapp svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+     fill="#25D366" class="bi bi-whatsapp" viewBox="0 0 16 16" aria-hidden="true">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+
+    </a>
   `;
 
   bar.appendChild(panel);
   bar.appendChild(fab);
   document.body.appendChild(bar);
+  bar.classList.add('is-active');
 
-  // показать/скрыть на мобилке
-  const mq = window.matchMedia('(max-width: 768px)');
-  const applyMQ = () => {
-    bar.classList.toggle('is-active', mq.matches);
-    if (!mq.matches) collapse();
-  };
-  applyMQ();
-  mq.addEventListener('change', applyMQ);
 
-  // раскрытие/сворачивание
-  function expand() { bar.classList.add('is-expanded'); panel.hidden = false; fab.setAttribute('aria-expanded', 'true'); }
-  function collapse() { bar.classList.remove('is-expanded'); panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); }
+  function expand(){ bar.classList.add('is-expanded'); panel.hidden = false; fab.setAttribute('aria-expanded','true'); }
+  function collapse(){ bar.classList.remove('is-expanded'); panel.hidden = true; fab.setAttribute('aria-expanded','false'); }
 
-  fab.addEventListener('click', (e) => { e.stopPropagation(); bar.classList.contains('is-expanded') ? collapse() : expand(); });
-  document.addEventListener('click', (e) => { if (!bar.contains(e.target)) collapse(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') collapse(); });
+  fab.addEventListener('click', (e)=>{ e.stopPropagation(); bar.classList.contains('is-expanded') ? collapse() : expand(); });
+  document.addEventListener('click', (e)=>{ if (!bar.contains(e.target)) collapse(); });
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') collapse(); });
 
-  // плавный скролл к форме (если форма есть)
   panel.querySelector('a[href="#form"]')?.addEventListener('click', (e) => {
     e.preventDefault(); collapse();
     document.getElementById('form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // скрывать рядом с формой (чтобы не перекрывала)
   const formSec = document.getElementById('form');
   if (formSec && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -735,3 +742,4 @@ function initStickyCta() {
     io.observe(formSec);
   }
 }
+

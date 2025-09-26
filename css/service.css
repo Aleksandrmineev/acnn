@@ -161,7 +161,7 @@
 
 /* номер шага — круг, авто счётчик */
 .service-page .step__num{
-  position:absolute; left:8px; top:16px;
+  position:absolute; left:8px; top:10px;
   width:28px; height:28px; border-radius:50%;
   display:grid; place-items:center;
   background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));
@@ -180,7 +180,7 @@
   font-size:16px; line-height:1;
 }
 .service-page .step__title{
-  font-size: var(--font-size-h3); font-weight:700; color: var(--clr-card-title);
+  font-size: var(--font-size-card-item); font-weight:400; color: var(--clr-card-title);
 }
 .service-page .step__text{
   color: var(--clr-text-light); font-size: var(--font-size-card-item); line-height: var(--line-height-lg);
@@ -226,7 +226,7 @@
 
 /* номер шага */
 .service-page .step__num{
-  position:absolute; left:8px; top:16px;
+  position:absolute; left:8px; top:10px;
   width:28px; height:28px; border-radius:50%;
   display:grid; place-items:center;
   background: linear-gradient(135deg, var(--clr-accent), var(--clr-primary));

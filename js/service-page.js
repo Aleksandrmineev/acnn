@@ -100,7 +100,6 @@
         <li class="step ${i >= MAX_STEPS_VISIBLE ? 'is-hidden' : ''}" data-open="false">
           <div class="step__num" aria-hidden="true"></div>
           <button class="step__q" type="button" aria-expanded="false" aria-controls="step-a-${i}" id="step-q-${i}">
-            <span class="step__icon" aria-hidden="true">${f.icon || pickIcon(f.title)}</span>
             <span class="step__title">${f.title || ""}</span>
           </button>
           <div class="step__a" id="step-a-${i}" role="region" aria-labelledby="step-q-${i}" style="height:0">
@@ -112,25 +111,42 @@
     ${hidden ? `<div class="steps-more"><button class="btn btn--ghost" id="steps-more-btn">Показать ещё ${hidden}</button></div>` : ''}
   `;
 
-    const toggle = (item) => {
-      const btn = item.querySelector('.step__q');
-      const ans = item.querySelector('.step__a');
-      const open = item.dataset.open === 'true';
-
-      if (open) {
-        ans.style.height = ans.scrollHeight + 'px';
-        void ans.offsetHeight;
-        ans.style.height = '0';
-        item.dataset.open = 'false';
-        btn.setAttribute('aria-expanded', 'false');
-      } else {
-        ans.style.height = ans.scrollHeight + 'px';
-        const onEnd = () => { ans.style.height = 'auto'; ans.removeEventListener('transitionend', onEnd); };
-        ans.addEventListener('transitionend', onEnd);
-        item.dataset.open = 'true';
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    };
+  const closeItem = (item) => {
+    if (!item || item.dataset.open !== 'true') return;
+    const btn = item.querySelector('.step__q');
+    const ans = item.querySelector('.step__a');
+    ans.style.height = ans.scrollHeight + 'px';
+    void ans.offsetHeight;
+    ans.style.height = '0';
+    item.dataset.open = 'false';
+    btn.setAttribute('aria-expanded', 'false');
+  };
+  
+  const openItem = (item) => {
+    if (!item || item.dataset.open === 'true') return;
+    const btn = item.querySelector('.step__q');
+    const ans = item.querySelector('.step__a');
+    ans.style.height = ans.scrollHeight + 'px';
+    const onEnd = () => { ans.style.height = 'auto'; ans.removeEventListener('transitionend', onEnd); };
+    ans.addEventListener('transitionend', onEnd);
+    item.dataset.open = 'true';
+    btn.setAttribute('aria-expanded', 'true');
+  };
+  
+  const toggle = (item) => {
+    const isOpen = item.dataset.open === 'true';
+    if (isOpen) {
+      closeItem(item);
+    } else {
+      // закрыть остальные
+      document.querySelectorAll('.step[data-open="true"]').forEach(el => {
+        if (el !== item) closeItem(el);
+      });
+      // открыть текущий
+      openItem(item);
+    }
+  };
+  
 
     // клики/клавиатура
     document.querySelectorAll('.step .step__q').forEach(btn => {
@@ -337,31 +353,42 @@
   `;
 
     // анимация раскрытия/скрытия
-    const toggle = (item) => {
+    const closeFaq = (item) => {
+      if (!item || item.dataset.open !== 'true') return;
       const q = item.querySelector('.faq-q');
       const a = item.querySelector('.faq-a');
-      const open = item.dataset.open === 'true';
-
-      if (open) {
-        // закрыть
-        a.style.height = a.scrollHeight + 'px';
-        // форс-рефлоу
-        void a.offsetHeight;
-        a.style.height = '0';
-        item.dataset.open = 'false';
-        q.setAttribute('aria-expanded', 'false');
+      a.style.height = a.scrollHeight + 'px';
+      void a.offsetHeight;
+      a.style.height = '0';
+      item.dataset.open = 'false';
+      q.setAttribute('aria-expanded', 'false');
+    };
+    
+    const openFaq = (item) => {
+      if (!item || item.dataset.open === 'true') return;
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      a.style.height = a.scrollHeight + 'px';
+      const onEnd = () => { a.style.height = 'auto'; a.removeEventListener('transitionend', onEnd); };
+      a.addEventListener('transitionend', onEnd);
+      item.dataset.open = 'true';
+      q.setAttribute('aria-expanded', 'true');
+    };
+    
+    const toggle = (item) => {
+      const isOpen = item.dataset.open === 'true';
+      if (isOpen) {
+        closeFaq(item);
       } else {
-        // открыть
-        a.style.height = a.scrollHeight + 'px';
-        const onEnd = () => {
-          a.style.height = 'auto';
-          a.removeEventListener('transitionend', onEnd);
-        };
-        a.addEventListener('transitionend', onEnd);
-        item.dataset.open = 'true';
-        q.setAttribute('aria-expanded', 'true');
+        // закрыть остальные
+        document.querySelectorAll('.faq-item[data-open="true"]').forEach(el => {
+          if (el !== item) closeFaq(el);
+        });
+        // открыть текущий
+        openFaq(item);
       }
     };
+    
 
     // слушатели
     document.querySelectorAll('.faq-item .faq-q').forEach(q => {

@@ -128,7 +128,7 @@
   .team-list {
     display: grid;
     grid-template-columns: 1fr;
-    justify-items: center;
+    justify-items:flex-start;
     align-items: flex-start;
     gap: 0;
     list-style: none;

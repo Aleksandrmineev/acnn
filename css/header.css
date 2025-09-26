@@ -11,8 +11,10 @@
   color: #fff;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
   z-index: 1;
-  background: rgba(30, 144, 255, 0.6); /* полупрозрачный синий */
-  backdrop-filter: blur(3px); /* опционально: эффект "стекла" */
+  background: color-mix(in oklab, #b93a1c 68%, transparent);
+  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
+  border-bottom: 1px solid color-mix(in oklab, #b93a1c 35%, #ffffff 5%);
   z-index: 10;
 }
 
@@ -20,12 +22,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 14px;
+  padding-top: 5px;
 }
 
 .header__logo {
-  max-width: 160px; /* или любой подходящий размер */
+  max-width: 65px;
   width: 100%;
+  height: auto;
   overflow: hidden;
 }
 

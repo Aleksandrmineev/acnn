@@ -19,7 +19,19 @@
 }
 
 .portfolio-card__btn {
-  margin-top: 1rem;
+  margin-top: 5px;
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: var(--font-size-cell-sub);
+  line-height: var(--btn-line-height);
+  text-align: center;
+  text-transform: var(--btn-text-transform);
+  padding: calc(var(--btn-padding-block) / 2) calc(var(--btn-padding-inline) / 2);
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 /* Видео-блок */
