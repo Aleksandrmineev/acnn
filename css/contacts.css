@@ -85,6 +85,11 @@
 
 .person__body {
   max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .person__name {
@@ -94,7 +99,7 @@
   font-size: var(--font-size-card-item);
 }
 .person__role {
-  font-size: 13px;
+  font-size: var(--font-size-base);
   opacity: 0.75;
   margin: 2px 0 8px;
 }
@@ -113,7 +118,7 @@
   gap: 8px;
   color: var(--clr-text);
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   margin-right: 16px;
 }
 .person__link:hover {

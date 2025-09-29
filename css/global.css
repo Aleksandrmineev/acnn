@@ -31,7 +31,7 @@
 --font-size-h1:  clamp(28px, 5vw, 45px); 
 --font-size-h3:  clamp(18px, 3.4vw, 28px);
 --font-size-subtitle: clamp(17px, 2.4vw, 22px);  /* заметно меньше h1/h2, но читабельно */
---font-size-base: clamp(12px, .9vw, 13px);     /* комфортный абзац */
+--font-size-base: clamp(12px, 1.9vw, 18px);     /* комфортный абзац */
 --font-size-sm: clamp(12px, 1.4vw, 14px);
 --font-size-card-item: clamp(14px, 1.8vw, 16px);
 --font-size-caption: clamp(12px, 1.2vw, 13px);
@@ -106,6 +106,10 @@ body {
 }
 main { flex: 1; }
 footer { margin-top: auto; }
+
+button {
+  font-size: var(--font-size-base);
+}
 
 /* ========================== */
 /*           Layout           */

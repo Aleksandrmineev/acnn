@@ -23,7 +23,7 @@
   display: inline-block;
   font-family: var(--font-family);
   font-weight: 300;
-  font-size: var(--font-size-cell-sub);
+  font-size: var(--font-size-base);
   line-height: var(--btn-line-height);
   text-align: center;
   text-transform: var(--btn-text-transform);
