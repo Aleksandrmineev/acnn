@@ -35,8 +35,8 @@
 --font-size-sm: clamp(12px, 1.4vw, 14px);
 --font-size-card-item: clamp(14px, 1.8vw, 16px);
 --font-size-caption: clamp(12px, 1.2vw, 13px);
---font-size-card-title: clamp(18px, 2.2vw, 24px);
---font-size-card-title2: clamp(12px, 1.2vw, 14px);
+--font-size-card-title: clamp(14px, 1.4vw, 20px);
+--font-size-card-title2: clamp(12px, 1vw, 14px);
 --font-size-cell-title: clamp(14px, 2vw, 17px);
 --font-size-cell-sub: clamp(10px, 1.6vw, 12px);
 
@@ -144,7 +144,7 @@ h1 {
   color: var(--clr-text);
 }
 h2 {
-  font-size: var(--font-size-card-title);
+  font-size: var(--font-size-h3);
   line-height: var(--line-height-xxl);
   color: var(--clr-card-title);
   text-transform: uppercase;
@@ -346,14 +346,14 @@ html.lock .to-top, body.lock .to-top{ display:none; }
 }
 
 .card__title, .card__title2{
-  font-size: var(--font-size-card-title2);
-  font-weight:400; line-height: var(--line-height-base);
+  font-size: var(--font-size-card-title);
+  font-weight:300; line-height: var(--line-height-base);
   margin-bottom:.3rem; color: var(--clr-white);
   text-shadow: var(--shadow-card-text);
   text-transform: uppercase;
 }
 .card__subtitle{
-  font-size: var(--font-size-base); color: var(--clr-white);
+  font-size: var(--font-size-card-title2); color: var(--clr-white);
   line-height: var(--line-height-base); text-shadow: var(--shadow-card-text);
 }
 /* Hover/Focus */

@@ -324,14 +324,49 @@ ol.list--num li:hover::before { transform: translateY(-1px); background: linear-
 
 /* Стрелки Splide: аккуратные круглые кнопки с тенью */
 .splide__arrows .splide__arrow {
+  --btn-base: #b93a1c;
+  --mix-20: color-mix(in oklab, var(--btn-base) 20%, transparent);
+  --mix-30: color-mix(in oklab, var(--btn-base) 30%, transparent);
+  --mix-45: color-mix(in oklab, var(--btn-base) 45%, transparent);
+  --mix-60: color-mix(in oklab, var(--btn-base) 60%, transparent);
+
+  color:#fff;
+  background:
+    linear-gradient(180deg, var(--mix-60), var(--mix-30)) padding-box,
+    linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.05)) border-box;
+  border: 1px solid var(--mix-45);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow:
+    0 10px 26px color-mix(in oklab, var(--btn-base) 35%, transparent),
+    inset 0 1px 0 rgba(255,255,255,.22);
+  transition:
+    background .2s ease, border-color .2s ease, box-shadow .2s ease,
+    filter .2s ease, transform .12s ease, color .2s ease;
+
+
+  margin-top: 11vw;
   width: 38px;
   height: 38px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(0,0,0,.08);
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  border-radius: 10px;
   display: grid;
   place-items: center;
+}
+
+.splide__arrows .splide__arrow:hover {
+  background: linear-gradient(180deg, var(--mix-60), var(--mix-30)) padding-box, linear-gradient(180deg, rgba(255, 255, 255, .25), rgba(255, 255, 255, .05)) border-box;
+  border-color: var(--mix-60);
+  box-shadow:
+    0 14px 32px color-mix(in oklab, var(--btn-base) 45%, transparent),
+    inset 0 1px 0 rgba(255,255,255,.28);
+  filter: brightness(1.03);
+}
+
+.splide__arrow--next {
+  right: -20px;
+}
+
+.splide__arrow--prev {
+  left: -20px;
 }
 .splide__arrow:hover { background: #fff; }
 .splide__arrow:disabled { opacity: .4; cursor: default; }
@@ -349,6 +384,10 @@ ol.list--num li:hover::before { transform: translateY(-1px); background: linear-
   .project__hero .splide__slide,
   .project__related .splide__slide {
     border-radius: 12px;
+  }
+
+  .project__related .splide__arrows .splide__arrow {
+    margin-top: 31vw;
   }
 }
 
