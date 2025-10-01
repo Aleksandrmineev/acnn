@@ -16,11 +16,14 @@
 
   color: var(--footer-text);
   padding: 24px 0;
-  font-size: var(--font-size-base);
 
   /* лёгкая «глубина» и разделение от контента */
   border-top: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+}
+
+.footer * {
+  font-size: 16px;
 }
 
 .footer__inner{
@@ -39,7 +42,9 @@
   padding:0;
   flex-wrap:wrap;
 }
+
 .footer__menu a{
+
   color: var(--footer-text);
   text-decoration: none;
   transition: color .2s ease, text-underline-offset .2s ease;

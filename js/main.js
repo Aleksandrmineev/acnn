@@ -377,6 +377,77 @@ function initServicesSlider() {
 }
 
 
+/* =========================
+   ПРОЕКТ: Swiper + GLightbox
+========================= */
+function initProjectSliderWithLightbox() {
+  const el = document.querySelector(".js-project-slider");
+  if (!el) return;
+
+  const imgs = el.querySelectorAll(".swiper-slide img");
+  const slidesCount = imgs.length;
+  const galleryName = el.dataset.gallery || "project-gallery";
+
+  // оборачиваем изображения в ссылки (если ещё не)
+  imgs.forEach((img) => {
+    if (img.closest("a")) return;
+    const a = document.createElement("a");
+    a.className = "glightbox";
+    a.href = img.getAttribute("data-full") || img.src;
+    a.setAttribute("data-gallery", galleryName);
+    a.setAttribute("aria-label", img.alt || "Фото проекта");
+    img.parentNode.insertBefore(a, img);
+    a.appendChild(img);
+  });
+
+  let lightbox = null;
+  if (typeof GLightbox === "function") {
+    lightbox = GLightbox({
+      selector: `.js-project-slider .glightbox[data-gallery="${galleryName}"]`,
+      touchNavigation: true,
+      keyboardNavigation: true,
+      closeOnOutsideClick: true,
+      loop: true,
+      openEffect: "zoom",
+      closeEffect: "fade",
+      slideEffect: "slide",
+    });
+  } else {
+    console.warn("GLightbox не найден: проверь подключение glightbox.min.js и .css");
+  }
+
+  if (slidesCount <= 2) {
+    el.classList.add("no-swiper");
+    if (slidesCount === 2) el.classList.add("has-2");
+    return;
+  }
+
+  if (!window.Swiper || typeof Swiper !== "function") return;
+
+  // eslint-disable-next-line no-new
+  new Swiper(el, {
+    loop: true,
+    spaceBetween: 24,
+    slidesPerView: 1,
+    breakpoints: { 768: { slidesPerView: 2 } },
+    pagination: { el: el.querySelector(".project__pagination"), clickable: true },
+    navigation: {
+      prevEl: el.querySelector(".project__prev"),
+      nextEl: el.querySelector(".project__next"),
+    },
+    observer: true,
+    observeParents: true,
+    preventClicks: false,
+    preventClicksPropagation: false,
+  });
+
+  // если будет динамическая подмена слайдов:
+  // swiper.on('slideChangeTransitionEnd', () => { lightbox && lightbox.reload(); });
+}
+
+/* =========================
+   ПРОЦЕСС (табы)
+========================= */
 function initProcessTabs(selector = '.js-process-tabs') {
   document.querySelectorAll(selector).forEach(root => {
     const tablist = root.querySelector('.process-tabs__list');
@@ -385,34 +456,18 @@ function initProcessTabs(selector = '.js-process-tabs') {
     if (!tablist || !tabs.length || !panels.length) return;
 
     const byId = id => root.querySelector(`#${id}`);
-    const activate = (tab, {updateHash=true} = {}) => {
+    const activate = (tab) => {
       const targetId = tab.getAttribute('aria-controls');
       const panel = byId(targetId);
-
-      tabs.forEach(t => {
-        const on = t === tab;
-        t.classList.toggle('is-active', on);
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.setAttribute('tabindex', on ? '0' : '-1');
-      });
-
-      panels.forEach(p => {
-        const show = p.id === targetId;
-        p.classList.toggle('is-active', show);
-        p.hidden = !show;
-      });
-
-      if (updateHash) {
-        // Поддержим твой формат #process-<data-tab>
-        const v = tab.dataset.tab;
-        if (v) history.replaceState(null, '', '#process-' + v);
-      }
+      tabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); t.setAttribute('tabindex', '-1'); });
+      panels.forEach(p => { p.classList.remove('is-active'); p.hidden = true; });
+      tab.classList.add('is-active'); tab.setAttribute('aria-selected', 'true'); tab.setAttribute('tabindex', '0');
+      if (panel) { panel.hidden = false; panel.classList.add('is-active'); }
+      tab.scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
     };
 
-    // Клики
     tabs.forEach(tab => tab.addEventListener('click', () => activate(tab)));
 
-    // Клавиатура (как у тебя)
     tablist.addEventListener('keydown', (e) => {
       const current = document.activeElement;
       if (!current.classList.contains('process-tab')) return;
@@ -423,90 +478,17 @@ function initProcessTabs(selector = '.js-process-tabs') {
       else if (e.key === 'End') { e.preventDefault(); tabs[tabs.length - 1].focus(); activate(tabs[tabs.length - 1]); }
     });
 
-    // === Поддержка хэшей:
-    // ТВОЙ формат: #process-<data-tab>
-    // И ДОПОЛНИТЕЛЬНО: #panel-... или #tab-...
     const openByHash = () => {
-      const hash = window.location.hash.replace('#','');
-      if (!hash) return;
-
-      // #process-<value>
-      const m = hash.match(/^process-([\w-]+)$/i);
-      if (m) {
-        const t = tabs.find(t => t.dataset.tab === m[1]);
-        if (t) return activate(t, {updateHash:false});
-      }
-      // #panel-... (ищем соответствующий таб)
-      if (hash.startsWith('panel-')) {
-        const t = tabs.find(t => t.getAttribute('aria-controls') === hash);
-        if (t) return activate(t, {updateHash:false});
-      }
-      // #tab-... (активируем напрямую)
-      if (hash.startsWith('tab-')) {
-        const t = tabs.find(t => t.id === hash);
-        if (t) return activate(t, {updateHash:true});
-      }
+      const m = window.location.hash.match(/^#process-([\w-]+)$/i);
+      if (!m) return;
+      const value = m[1];
+      const tab = tabs.find(t => t.dataset.tab === value);
+      if (tab) activate(tab);
     };
-
-    // === Начальная инициализация:
-    // 1) если уже размечено is-active — уважаем;
-    // 2) иначе включаем первый;
-    // 3) если есть хэш — перекрываем им.
-    const preset = tabs.find(t => t.classList.contains('is-active')) || tabs[0];
-    // Скрыть все панели перед активацией
-    panels.forEach(p => p.hidden = true);
-    if (preset) activate(preset, {updateHash:false});
     openByHash();
     window.addEventListener('hashchange', openByHash);
   });
 }
-
-// === ПОСЛЕ объявления initProcessTabs(...) в main.js ===
-
-// Защита от двойной инициализации одного и того же корня
-(function () {
-  const SELECTOR = '.js-process-tabs';
-
-  // Переопределим init так, чтобы она помечала корень
-  const _initProcessTabs = initProcessTabs;
-  window.initProcessTabs = function (selector = SELECTOR) {
-    document.querySelectorAll(selector).forEach(root => {
-      if (root.dataset.tabsInited === '1') return;
-      root.dataset.tabsInited = '1';
-    });
-    _initProcessTabs(selector);
-  };
-
-  // 1) Инициализация при обычной загрузке
-  document.addEventListener('DOMContentLoaded', () => {
-    try { initProcessTabs(SELECTOR); } catch (e) { console.error(e); }
-  });
-
-  // 2) Возврат со страницы из bfcache (назад/вперёд)
-  window.addEventListener('pageshow', (e) => {
-    if (e.persisted) {
-      try { initProcessTabs(SELECTOR); } catch (err) { console.error(err); }
-    }
-  });
-
-  // 3) Авто-инициализация для динамически добавленных узлов (AJAX, модалки и т.п.)
-  const mo = new MutationObserver((mutations) => {
-    let need = false;
-    for (const m of mutations) {
-      m.addedNodes && m.addedNodes.forEach((n) => {
-        if (!(n instanceof Element)) return;
-        if (n.matches && n.matches(SELECTOR)) need = true;
-        if (!need && n.querySelector && n.querySelector(SELECTOR)) need = true;
-      });
-    }
-    if (need) {
-      try { initProcessTabs(SELECTOR); } catch (e) { console.error(e); }
-    }
-  });
-  mo.observe(document.documentElement, { childList: true, subtree: true });
-})();
-
-
 /* =========================
    Слайдер «Похожие проекты»
 ========================= */
